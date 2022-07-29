@@ -1,12 +1,13 @@
-class Chicken extends MovableObject {
+class SmallChicken extends MovableObject {
 
-    width = 80;
-    height = 80;
+    width = 40;
+    height = 40;
+    y = 395
 
     IMAGES_WALKING = [
-        'img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        'img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        'img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
+        'img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
+        'img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
+        'img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
     ];
 
     constructor() {
@@ -27,4 +28,6 @@ class Chicken extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
         }, 200);
     }
+
+
 }
