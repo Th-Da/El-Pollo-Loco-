@@ -1,34 +1,94 @@
 class World {
 
-
     character = new Character();
-
     level = level1;
-
     ctx;
     canvas;
     camera_x = -100;
+    StatusBarHealth = new StatusBarHealth();
+    StatusBarBottles = new StatusBarBottles();
+    throwableObjects = [];
+    backgroundMusic = new Audio('audio/background-music.mp3')
 
-    constructor(canvas, keyboard) {
+    constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = Keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollision();
+        this.run();
     };
 
     setWorld() {
         this.character.world = this;
     }
 
+    playBackgroundMusic() {
+        this.backgroundMusic.volume = 0.1;
+        this.backgroundMusic.play();
+    }
+
+
+    run() {
+        setInterval(() => {
+            this.checkCollision();
+            this.createThrowableObjects();
+            this.checkCollectableObjects();
+        }, 1000);
+    }
+
+    createThrowableObjects() {
+        if (this.keyboard.SPACE) {
+            this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
+        }
+    }
+
+    checkCollision() {
+        this.level.enemies.forEach(enemy => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.StatusBarHealth.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkCollectableObjects() {
+        this.level.objects.forEach((object, index) => {
+            if (this.character.isColliding(object)) {
+                this.level.objects.splice(index, 1);
+                try {
+                if (object instanceof Bottle) {
+                    this.character.collect();
+                    this.StatusBarBottles.setPercentage(this.character.bottle);
+                    
+                }} catch (e) {
+                    console.log('Error loading Image', e);
+                }
+            }
+        });
+    }
+
+    /*     removeObject(collectetObject, index) {
+            this.level.objects.splice(index, 1);
+        }
+     */
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.objects);
+        this.addToMap(this.character);
+
+        this.ctx.translate(-this.camera_x, 0); //Back
+        this.addToMap(this.StatusBarHealth);
+        this.addToMap(this.StatusBarBottles);
+        this.ctx.translate(this.camera_x, 0); // Foreward
+
         this.ctx.translate(-this.camera_x, 0);
 
 
@@ -42,22 +102,37 @@ class World {
     }
 
     addObjectsToMap(objects) {
-        objects.forEach(o => {
-            this.addToMap(o);
-        });
+        try {
+            objects.forEach(o => {
+                this.addToMap(o);
+
+            });
+        } catch (e) {
+            console.log('Error loading Image', e);
+        }
     }
 
     addToMap(mo) {
         if (mo.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);
-            mo.x = mo.x * -1;
+            this.flipImage(mo);
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
+
         if (mo.otherDirection) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(mo);
         }
+    }
+
+    flipImage(mo) {
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1);
+        mo.x = mo.x * -1;
+    }
+
+    flipImageBack(mo) {
+        mo.x = mo.x * -1;
+        this.ctx.restore();
     }
 }
