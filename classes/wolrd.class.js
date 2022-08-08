@@ -35,20 +35,28 @@ class World {
             this.checkCollision();
             this.createThrowableObjects();
             this.checkCollectableObjects();
-        }, 1000);
+        }, 200);
     }
 
     createThrowableObjects() {
-        if (this.keyboard.SPACE) {
+        if (this.keyboard.SPACE && this.character.bottle > 0) {
             this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
+            this.character.bottle -= 20;
+            this.StatusBarBottles.setPercentage(this.character.bottle);
+
         }
     }
 
     checkCollision() {
-        this.level.enemies.forEach(enemy => {
+        this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
+            }
+            if (this.throwableObjects[0]) {
+                if (this.throwableObjects[0].isColliding(enemy)) {
+                enemy.hit();
+                }
             }
         });
     }
@@ -57,22 +65,18 @@ class World {
         this.level.objects.forEach((object, index) => {
             if (this.character.isColliding(object)) {
                 this.level.objects.splice(index, 1);
-                try {
                 if (object instanceof Bottle) {
                     this.character.collect();
                     this.StatusBarBottles.setPercentage(this.character.bottle);
-                    
-                }} catch (e) {
-                    console.log('Error loading Image', e);
                 }
             }
         });
     }
 
-    /*     removeObject(collectetObject, index) {
-            this.level.objects.splice(index, 1);
-        }
-     */
+
+
+    checkT
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
