@@ -35,6 +35,7 @@ class World {
             this.checkCollision();
             this.createThrowableObjects();
             this.checkCollectableObjects();
+            this.checkIfEnemyIsHit();
         }, 200);
     }
 
@@ -47,17 +48,23 @@ class World {
         }
     }
 
+    checkIfEnemyIsHit() {
+        this.level.enemies.forEach(object => {
+            this.throwableObjects.forEach(bottle => {
+                    if (bottle.isColliding(object)) {
+                        object.hit();
+                    }
+            });
+        });
+    }
+
     checkCollision() {
-        this.level.enemies.forEach((enemy, index) => {
+        this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
-            if (this.throwableObjects[0]) {
-                if (this.throwableObjects[0].isColliding(enemy)) {
-                enemy.hit();
-                }
-            }
+
         });
     }
 

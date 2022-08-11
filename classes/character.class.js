@@ -70,7 +70,6 @@ class Character extends MovableObject {
                     this.walking_sound.play();
                 }
             }
-
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
@@ -78,7 +77,6 @@ class Character extends MovableObject {
                     this.walking_sound.play();
                 }
             }
-
             if (this.world.keyboard.UP && !this.isAboveGround()) {
                 this.jump();
             }
@@ -89,7 +87,7 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            }  if (this.isHurt()) {
+            } if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 this.hurt_sound.volume = 0.1;
                 this.hurt_sound.play();
