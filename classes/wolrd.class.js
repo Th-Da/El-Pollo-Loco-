@@ -9,7 +9,7 @@ class World {
     StatusBarBottles = new StatusBarBottles();
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
-    startscreen
+    startscreen = 'img_pollo_locco/img/9_intro_outro_screens/start/startscreen_1.png'
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -91,6 +91,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.objects);
         this.addToMap(this.character);
+        this.addToMap(this.startscreen);
 
         this.ctx.translate(-this.camera_x, 0); //Back
         this.addToMap(this.StatusBarHealth);

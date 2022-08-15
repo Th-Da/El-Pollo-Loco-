@@ -8,11 +8,6 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-function setStobbableInterval(fn, time) {
-    let id = setInterval(fn, time);
-    setIntervalIds.push(id);
-}
-
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
         Keyboard.RIGHT = true;
