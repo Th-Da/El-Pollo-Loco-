@@ -8,7 +8,8 @@ class World {
     StatusBarHealth = new StatusBarHealth();
     StatusBarBottles = new StatusBarBottles();
     throwableObjects = [];
-    backgroundMusic = new Audio('audio/background-music.mp3')
+    backgroundMusic = new Audio('audio/background-music.mp3');
+    startscreen
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
