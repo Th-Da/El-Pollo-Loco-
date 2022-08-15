@@ -1,10 +1,16 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let setIntervalIds = [];
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+}
+
+function setStobbableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    setIntervalIds.push(id);
 }
 
 window.addEventListener("keydown", (e) => {

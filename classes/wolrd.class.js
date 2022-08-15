@@ -31,7 +31,7 @@ class World {
 
 
     run() {
-        setInterval(() => {
+        setStobbableInterval(() => {
             this.checkCollision();
             this.createThrowableObjects();
             this.checkCollectableObjects();
@@ -79,10 +79,6 @@ class World {
             }
         });
     }
-
-
-
-    checkT
 
 
     draw() {

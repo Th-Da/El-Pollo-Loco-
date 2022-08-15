@@ -7,7 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
 
     applyGravity() {
-        setInterval(() => {
+        setStobbableInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
@@ -50,7 +50,6 @@ class MovableObject extends DrawableObject {
     }
 
     isDead() {
-        this.isHurt();
         return this.energy == 0;
     }
 
@@ -61,7 +60,6 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
 
     }
-
 
     moveRight() {
         this.x += this.speed;
