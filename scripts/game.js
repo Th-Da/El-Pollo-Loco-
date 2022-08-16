@@ -1,12 +1,16 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let setIntervalIds = [];
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
+
+function stopGame() {
+    setIntervalIds.forEach(clearInterval);
+}
+
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {

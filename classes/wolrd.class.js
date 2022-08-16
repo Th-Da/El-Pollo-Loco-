@@ -10,7 +10,9 @@ class World {
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
     startscreen = 'img_pollo_locco/img/9_intro_outro_screens/start/startscreen_1.png'
+    IMAGE_GAMEOVER = ['img_pollo_locco/img/9_intro_outro_screens/game_over/game_over.png']
 
+    
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -91,14 +93,23 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.objects);
         this.addToMap(this.character);
-        this.addToMap(this.startscreen);
+
+
 
         this.ctx.translate(-this.camera_x, 0); //Back
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarBottles);
         this.ctx.translate(this.camera_x, 0); // Foreward
-
+        try {
         this.ctx.translate(-this.camera_x, 0);
+    } catch (e) {
+        console.log('Error loading Image', e);
+    }
+        if (this.character.isDead) {
+            
+            this.addObjectsToMap(this.IMAGE_GAMEOVER);
+        
+        }
 
 
 
@@ -111,14 +122,12 @@ class World {
     }
 
     addObjectsToMap(objects) {
-        try {
+        
             objects.forEach(o => {
                 this.addToMap(o);
 
             });
-        } catch (e) {
-            console.log('Error loading Image', e);
-        }
+       
     }
 
     addToMap(mo) {

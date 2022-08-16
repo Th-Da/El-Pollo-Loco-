@@ -60,7 +60,7 @@ class Character extends MovableObject {
 
     animate() {
 
-        setInterval(() => {
+        setStobbableInterval(() => {
             this.walking_sound.playbackRate = 2.5;
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -83,10 +83,12 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
 
-        setInterval(() => {
+        setStobbableInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                stopGame();
+                this.drawGameOverScreen();
             } if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 this.hurt_sound.volume = 0.1;
