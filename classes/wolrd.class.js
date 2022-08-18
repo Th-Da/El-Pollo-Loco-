@@ -4,13 +4,13 @@ class World {
     level = level1;
     ctx;
     canvas;
-    camera_x = -100;
+    camera_x = -10;
     StatusBarHealth = new StatusBarHealth();
     StatusBarBottles = new StatusBarBottles();
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
-    startscreen = 'img_pollo_locco/img/9_intro_outro_screens/start/startscreen_1.png'
-    IMAGE_GAMEOVER = ['img_pollo_locco/img/9_intro_outro_screens/game_over/game_over.png']
+    EndScreen = new EndScreen;
+    StartScreen = 'img_pollo_locco/img/9_intro_outro_screens/start/startscreen_1.png';
 
     
     constructor(canvas) {
@@ -21,6 +21,8 @@ class World {
         this.setWorld();
         this.checkCollision();
         this.run();
+        this.backgroundMusic.volume = 0.01;
+        this.backgroundMusic.play();
     };
 
     setWorld() {
@@ -94,22 +96,18 @@ class World {
         this.addObjectsToMap(this.level.objects);
         this.addToMap(this.character);
 
-
+/*         if (this.character.energy == 0) {
+            this.EndScreen.x = this.character.x - 100;
+            this.addToMap(this.EndScreen);
+        } */
 
         this.ctx.translate(-this.camera_x, 0); //Back
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarBottles);
         this.ctx.translate(this.camera_x, 0); // Foreward
-        try {
+
         this.ctx.translate(-this.camera_x, 0);
-    } catch (e) {
-        console.log('Error loading Image', e);
-    }
-        if (this.character.isDead) {
-            
-            this.addObjectsToMap(this.IMAGE_GAMEOVER);
-        
-        }
+
 
 
 
@@ -120,6 +118,7 @@ class World {
             self.draw();
         });
     }
+
 
     addObjectsToMap(objects) {
         

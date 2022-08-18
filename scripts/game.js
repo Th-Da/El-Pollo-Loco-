@@ -3,8 +3,20 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
+
+}
+
+function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    document.getElementById('start-screen').remove();
+    document.getElementById('canvas').style.backgroundImage = 'none';
+}
+
+
+function gameOverScreen() {
+    stopGame();
+    document.getElementById('canvas').style.backgroundImage = 'url(img_pollo_locco/img/9_intro_outro_screens/game_over/game_over.png)';
 }
 
 function stopGame() {
