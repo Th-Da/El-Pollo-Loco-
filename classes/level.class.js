@@ -12,4 +12,3 @@ class level {
         this.objects = objects;
     }
 }
-

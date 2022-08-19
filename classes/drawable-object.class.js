@@ -34,9 +34,9 @@ class DrawableObject {
         }
     }
 
-    drawGameOverScreen() {
+/*     drawGameOverScreen() {
         this.loadImage(this.IMAGE_GAMEOVER);
-    }
+    } */
 
     collect () {
         this.bottle += 20;

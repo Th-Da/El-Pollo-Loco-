@@ -10,11 +10,10 @@
     <link rel="stylesheet" href="./style.css">
 
     <script src="./scripts/assetFunctions.js"></script>
-    <script src="./classes/wolrd.class.js"></script>
     <script src="./classes/drawable-object.class.js"></script>
     <script src="./classes/movable-object.class.js"></script>
+    <script src="./classes/wolrd.class.js"></script>
     <script src="./classes/character.class.js"></script>
-    <script src="./classes/end-screen.class.js"></script>
     <script src="./classes/chicken.class.js"></script>
     <script src="./classes/cloud.class.js"></script>
     <script src="./classes/statusbar-health.class.js"></script>
@@ -38,9 +37,11 @@
     <div id="container" class="container">
         <canvas id="canvas" width="720" height="480"></canvas>
 
-        <div id="start-screen" class="startScreen" onclick="startGame()">
+        <div id="startScreen" class="start-screen" onclick="startGame()">
             <img src="./img_pollo_locco/img/9_intro_outro_screens/start/start_button.png" alt="">
-
+        </div>
+        <div id="endScreen" class="end-screen d-none">
+            <img src="./img_pollo_locco/img/9_intro_outro_screens/start/restart_button.png" alt="" onclick="restartGame()">
         </div>
     </div>
 

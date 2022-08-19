@@ -12,10 +12,16 @@ class Bottle extends DrawableObject {
 
 
     constructor() {
+            
         super().loadImage(this.IMAGES[0]);
-        this.loadImages(this.IMAGES);
 
+        this.IMAGES.forEach(image => {
+        this.loadImage(image);
+          
         this.x = 200 + Math.random() * 1900;
+
+    });
+
     }
 
 }
