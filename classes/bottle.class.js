@@ -17,6 +17,7 @@ class Bottle extends DrawableObject {
 
         this.IMAGES.forEach(image => {
         this.loadImage(image);
+        image = image;
           
         this.x = 200 + Math.random() * 1900;
 

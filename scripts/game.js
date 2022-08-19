@@ -23,6 +23,10 @@ function gameOverScreen() {
     document.getElementById('endScreen').classList.remove('d-none');    
 }
 
+function winScreen() {
+    
+}
+
 function stopGame() {
     setIntervalIds.forEach(clearInterval);
 }

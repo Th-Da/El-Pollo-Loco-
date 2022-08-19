@@ -4,8 +4,16 @@ class Endboss extends MovableObject {
     height = 400;
     y = 60
     energy = 25;
+    firstContact = false;
 
     IMAGES_WALKING = [
+        'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
+        'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G2.png',
+        'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G3.png',
+        'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G4.png'
+    ]
+
+    IMAGES_ALERT = [
         'img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png',
         'img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G6.png',
         'img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G7.png',
@@ -31,6 +39,7 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_HURT); 
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2500;
@@ -39,15 +48,14 @@ class Endboss extends MovableObject {
 
     animate() {
         setStobbableInterval(() => {
-            if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } if (this.isDead()) {
+             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 stopGame();
             }
-
-            else {
+            else if (world.character.x > 2100) {
                 this.playAnimation(this.IMAGES_WALKING);
+            } if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
             }
         }, 200);
     }
