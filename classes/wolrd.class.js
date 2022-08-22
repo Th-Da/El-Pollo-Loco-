@@ -5,6 +5,7 @@ class World {
     ctx;
     canvas;
     camera_x = -10;
+    x;
     StatusBarHealth = new StatusBarHealth();
     StatusBarBottles = new StatusBarBottles();
     throwableObjects = [];
@@ -74,14 +75,14 @@ class World {
         this.level.objects.forEach((object, index) => {
             if (this.character.isColliding(object)) {
                 this.level.objects.splice(index, 1);
-                if (object instanceof Bottle) {
+                if (object instanceof Bottle1 || object instanceof Bottle2) {
                     this.character.collect();
                     this.StatusBarBottles.setPercentage(this.character.bottle);
                 }
             }
         });
     }
-
+    
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
