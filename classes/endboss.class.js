@@ -58,14 +58,16 @@ class Endboss extends MovableObject {
                 stopGame();
             }
 
-             else if (this.calculatedistance() > 850) {
-                this.speed = 1,5;
-                setStobbableInterval(() => {
-                    this.moveLeft();
-                }, 1000);
-            } if (this.calculatedistance() > 700) {
+            else if (world) {
+                if (this.calculatedistance() < 850) {
+                    this.speed = 1, 5;
+                    setStobbableInterval(() => {
+                        this.moveLeft();
+                    }, 1000);
+                } if (this.calculatedistance() > 700) {
 
-                this.speed = 0
+                    this.speed = 0
+                }
             }
 
 
