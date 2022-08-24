@@ -23,16 +23,16 @@ function gameOverScreen() {
     document.getElementById('endScreen').classList.remove('d-none');    
 }
 
-function winScreen() {
-    
-}
-
 function stopGame() {
     setIntervalIds.forEach(clearInterval);
 }
 
 function restartGame() {
     window.location = 'index.html';
+}
+
+function toggleFullScreen() {
+    document.getElementById('canvas').requestFullscreen();
 }
 
 window.addEventListener("keydown", (e) => {

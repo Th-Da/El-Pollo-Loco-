@@ -2,6 +2,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(img_pollo_locco/img/5_background/desert-background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
 }
 
 .d-none {
@@ -12,8 +16,6 @@ body {
     position: relative;
     z-index: 1;
 }
-
-
 
 canvas {
     background-color: black;
@@ -47,4 +49,11 @@ canvas {
     position: absolute; 
     left: 40%;
     bottom: 5%;
+}
+
+.full-screen {
+    position: absolute;
+    right: 1%;
+    bottom: 2%;
+    cursor: pointer;
 }
