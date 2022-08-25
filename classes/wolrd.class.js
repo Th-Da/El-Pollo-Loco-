@@ -10,6 +10,7 @@ class World {
     StatusBarBottles = new StatusBarBottles();
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
+    isHittet = false;
     
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -56,6 +57,8 @@ class World {
             this.throwableObjects.forEach(bottle => {
                     if (bottle.isColliding(object)) {
                         object.hit();
+                        object.isHittet = true;
+                        console.log(this)
                     }
             });
         });
