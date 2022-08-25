@@ -19,8 +19,7 @@ class World {
         this.setWorld();
         this.checkCollision();
         this.run();
-        this.backgroundMusic.volume = 0.01;
-        this.backgroundMusic.play();
+        this.playBackgroundMusic();
     };
 
     setWorld() {
@@ -28,8 +27,9 @@ class World {
     }
 
     playBackgroundMusic() {
-        this.backgroundMusic.volume = 0.1;
+        this.backgroundMusic.volume = 0.01;
         this.backgroundMusic.play();
+        this.backgroundMusic.loop = true;
     }
 
 

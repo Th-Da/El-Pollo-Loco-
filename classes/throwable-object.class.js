@@ -18,8 +18,8 @@ class ThrowableObject extends MovableObject {
     constructor(x, y) {
 
         super().loadImage(this.IMAGES_TRHOWABLE[0]);
-/*         this.loadImages(this.IMAGES_TRHOWABLE);
- */     this.x = x;
+        this.loadImages(this.IMAGES_TRHOWABLE);
+     this.x = x;
         this.y = y;
         this.throw(x, y);
     }
@@ -27,11 +27,12 @@ class ThrowableObject extends MovableObject {
 
     throw() {
 
-        this.speedY = 20;
-        this.applyGravity();
         setStobbableInterval(() => {
-            this.x += 10;
-        }, 20);
+            this.playAnimation(this.IMAGES_TRHOWABLE)
+            this.applyGravity();
+            this.speedY = 7;
+            this.x += 30;
+        }, 100);
     }
 
 }
