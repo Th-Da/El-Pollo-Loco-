@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-
+    bindBtnsPressEventens();
 }
 
 function startGame() {
@@ -36,4 +36,45 @@ function toggleFullScreen() {
 }
 
 
-    
+function bindBtnsPressEventens() {
+    document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        Keyboard.LEFT = true;
+    });
+
+    document.getElementById('btnLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        Keyboard.LEFT = false;
+    });
+
+    document.getElementById('btnRight').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        Keyboard.RIGHT = true;
+    });
+
+    document.getElementById('btnRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        Keyboard.LEFT = false;
+    });
+
+    document.getElementById('btnUp').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        Keyboard.UP = true;
+    });
+
+    document.getElementById('btnUp').addEventListener('touchend', (e) => {
+        e.preventDefault();
+
+        Keyboard.LEFT = false;
+    });
+
+    document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        Keyboard.SPACE = true;
+    });
+
+    document.getElementById('btnThrow').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        Keyboard.LEFT = false;
+    });
+}

@@ -7,7 +7,6 @@ class Keyboard {
 
     constructor() {
         this.bindKeyPressEvents();
-        this.bindBtnsPressEventens();
     }
 
     bindKeyPressEvents() {
@@ -42,40 +41,6 @@ class Keyboard {
         });
     }
 
-    bindBtnsPressEventens() {
-        document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            Keyboard.LEFT = true;
-        });
-
-        document.getElementById('btnLeft').addEventListener('touchend', (e) => {
-            Keyboard.LEFT = true;
-        });
-
-        document.getElementById('btnRight').addEventListener('touchstart', (e) => {
-            Keyboard.RIGHT = true;
-        });
-
-        document.getElementById('btnRight').addEventListener('touchend', (e) => {
-            Keyboard.LEFT = false;
-        });
-
-        document.getElementById('btnUp').addEventListener('touchstart', (e) => {
-            Keyboard.UP = true;
-        });
-
-        document.getElementById('btnUp').addEventListener('touchend', (e) => {
-            Keyboard.LEFT = true;
-        });
-
-        document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
-            Keyboard.SPACE = true;
-        });
-
-        document.getElementById('btnThrow').addEventListener('touchend', (e) => {
-            Keyboard.LEFT = false;
-        });
-    }
 
 
 
