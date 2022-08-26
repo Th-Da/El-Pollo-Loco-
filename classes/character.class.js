@@ -141,7 +141,7 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         setTimeout(() => {
             gameOverScreen();
-        }, 1000  );
+        }, 1000);
     }
 
 

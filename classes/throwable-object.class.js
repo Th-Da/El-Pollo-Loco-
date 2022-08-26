@@ -18,7 +18,7 @@ class ThrowableObject extends MovableObject {
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
-    ]
+    ];
 
 
 
@@ -40,13 +40,12 @@ class ThrowableObject extends MovableObject {
             this.applyGravity();
             this.speedY = 7;
             this.x += 30;
-            level1.enemies.forEach(enem => {
+            world.level.enemies.forEach(enem => {
                 if (enem.isHittet) {
                     this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);
                     enem.isHittet = false;
                 }
             });
-
-        }, 100);
+        }, 120);
     }
 }

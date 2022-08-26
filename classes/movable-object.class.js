@@ -32,7 +32,7 @@ class MovableObject extends DrawableObject {
     }
 
     isHittingFromTop(mo) {
-        return 
+        return
     }
 
     hit() {

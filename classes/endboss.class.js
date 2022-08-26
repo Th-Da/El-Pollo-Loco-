@@ -3,8 +3,7 @@ class Endboss extends MovableObject {
     width = 250;
     height = 400;
     y = 60
-    energy = 25;
-    firstContact = false;
+    energy = 50;
     speed;
 
 
@@ -13,7 +12,7 @@ class Endboss extends MovableObject {
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G2.png',
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G3.png',
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G4.png'
-    ]
+    ];
 
     IMAGES_ALERT = [
         'img_pollo_locco/img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -36,7 +35,7 @@ class Endboss extends MovableObject {
         'img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G24.png',
         'img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G25.png',
         'img_pollo_locco/img/4_enemie_boss_chicken/5_dead/G26.png'
-    ]
+    ];
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
@@ -55,29 +54,27 @@ class Endboss extends MovableObject {
         setStobbableInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                stopGame();
+                setTimeout(function () {
+                    stopGame();
+                }, 700);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
             }
-
-            if (world) {
-                if (this.calculatedistance() < 850) {
+            else if (world && this.calculatedistance() < 850) {
+                if (!this.isHittet) {
                     this.speed = 1, 5;
+                    this.playAnimation(this.IMAGES_WALKING);
                     setStobbableInterval(() => {
                         this.moveLeft();
                     }, 1000);
-                } if (this.calculatedistance() > 700) {
-
+                } else if (this.calculatedistance() > 700) {
                     this.speed = 0
                 }
+
             }
 
 
-
-            if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-            }
         }, 200);
-
-
     }
 
     calculatedistance(distance) {

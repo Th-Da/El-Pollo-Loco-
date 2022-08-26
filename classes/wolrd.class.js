@@ -11,7 +11,7 @@ class World {
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
     isHittet = false;
-    
+
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -28,7 +28,7 @@ class World {
     }
 
     playBackgroundMusic() {
-        this.backgroundMusic.volume = 0.01;
+        this.backgroundMusic.volume = 0.02;
         this.backgroundMusic.play();
         this.backgroundMusic.loop = true;
     }
@@ -53,15 +53,23 @@ class World {
     }
 
     checkIfEnemyIsHit() {
-        this.level.enemies.forEach(object => {
+        this.level.enemies.forEach((object, index) => {
             this.throwableObjects.forEach(bottle => {
-                    if (bottle.isColliding(object)) {
-                        object.hit();
-                        object.isHittet = true;
-                        console.log(this)
-                    }
+                this.bottleHitsEnemy(object, index, bottle);
             });
         });
+    }
+
+    bottleHitsEnemy(object, index, bottle) {
+        if (bottle.isColliding(object)) {
+            object.hit();
+            object.isHittet = true;
+            if (!(object instanceof Endboss)) {
+                setTimeout(() => {
+                    this.level.enemies.splice(index, 1);
+                }, 1000);
+            }
+        }
     }
 
     checkCollision() {
@@ -70,9 +78,10 @@ class World {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
-
         });
     }
+
+
 
     checkCollectableObjects() {
         this.level.objects.forEach((object, index) => {
@@ -85,7 +94,7 @@ class World {
             }
         });
     }
-    
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -115,12 +124,12 @@ class World {
 
 
     addObjectsToMap(objects) {
-        
-            objects.forEach(o => {
-                this.addToMap(o);
 
-            });
-       
+        objects.forEach(o => {
+            this.addToMap(o);
+
+        });
+
     }
 
     addToMap(mo) {
