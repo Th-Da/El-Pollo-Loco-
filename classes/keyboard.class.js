@@ -7,6 +7,7 @@ class Keyboard {
 
     constructor() {
         this.bindKeyPressEvents();
+        this.bindBtnsPressEventens();
     }
 
     bindKeyPressEvents() {
@@ -38,6 +39,44 @@ class Keyboard {
                 Keyboard.UP = false;
             }
 
+        });
+    }
+
+    bindBtnsPressEventens() {
+        document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
+            Keyboard.LEFT = true;
+            console.log(e.defaultPrevented);  // will be false
+            e.preventDefault();   // does nothing since the listener is passive
+            console.log(e.defaultPrevented);  // still false
+        }, { passive: true });
+
+        document.getElementById('btnLeft').addEventListener('touchend', (e) => {
+            e.preventDefault();
+            Keyboard.LEFT = false;
+        });
+
+        document.getElementById('btnRight').addEventListener('touchstart', (e) => {
+            Keyboard.RIGHT = true;
+        }, { passive: true });
+
+        document.getElementById('btnRight').addEventListener('touchend', (e) => {
+            Keyboard.LEFT = false;
+        });
+
+        document.getElementById('btnUp').addEventListener('touchstart', (e) => {
+            Keyboard.UP = true;
+        }, { passive: true });
+
+        document.getElementById('btnUp').addEventListener('touchend', (e) => {
+            Keyboard.LEFT = false;
+        });
+
+        document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
+            Keyboard.SPACE = true;
+        }, { passive: true });
+
+        document.getElementById('btnThrow').addEventListener('touchend', (e) => {
+            Keyboard.LEFT = false;
         });
     }
 
