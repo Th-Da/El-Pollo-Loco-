@@ -13,7 +13,7 @@ function startGame() {
 }
 
 function removeStartEndElements() {
-    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('startButton').classList.add('d-none');
     document.getElementById('canvas').style.backgroundImage = 'none';
     document.getElementById('endScreen').classList.add('d-none');
 }

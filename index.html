@@ -52,12 +52,34 @@
             </div>
         </div>
 
-        <div id="startScreen" class="start-screen" onclick="startGame()">
-            <img src="./img_pollo_locco/img/9_intro_outro_screens/start/start_button.png" alt="">
+        <div id="how2play" class="how2play">
+            <h3>How To Play:</h3>
+
+            <div>
+                <img class="btn-descr" src="img_pollo_locco/img/5_background/left.png" alt="">
+                walk left
+            </div>
+            <div>
+                <img class="btn-descr" src="img_pollo_locco/img/5_background/right.png" alt="">
+                walk right
+            </div>
+            <div>
+                <img class="btn-descr" src="img_pollo_locco/img/5_background/up.png" alt="">
+                jump
+            </div>
+            <div>
+                <img class="btn-descr" src="img_pollo_locco/img/5_background/throw.png" alt="">
+                throw bottle
+            </div>
+
+
         </div>
+
+        <button id="startButton" class="start-button" onclick="startGame()">Start Game</button>
+
         <div id="endScreen" class="end-screen d-none">
-            <img src="./img_pollo_locco/img/9_intro_outro_screens/start/restart_button.png" alt=""
-                onclick="restartGame()">
+            <button id="startScreen" class="start-button" onclick="restartGame()"></button>Start Game</button>
+            
         </div>
     </div>
 

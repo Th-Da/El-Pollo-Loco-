@@ -24,7 +24,7 @@ class DrawableObject {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);   
     }
 
-    drawFrame(ctx) {
+/*     drawFrame(ctx) {
         if (this instanceof Character || this instanceof SmallChicken || this instanceof Chicken || this instanceof Bottle1 || this instanceof Bottle2 || this instanceof Coin || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
@@ -32,10 +32,6 @@ class DrawableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
-    }
-
-/*     drawGameOverScreen() {
-        this.loadImage(this.IMAGE_GAMEOVER);
     } */
 
     collect () {
