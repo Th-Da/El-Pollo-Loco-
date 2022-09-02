@@ -16,6 +16,7 @@ function removeStartEndElements() {
     document.getElementById('startButton').classList.add('d-none');
     document.getElementById('canvas').style.backgroundImage = 'none';
     document.getElementById('endScreen').classList.add('d-none');
+    document.getElementById('btnsBottom').style.display = 'flex';
 }
 
 function gameOverScreen() {

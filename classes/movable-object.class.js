@@ -31,10 +31,6 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height
     }
 
-    isHittingFromTop(mo) {
-        return
-    }
-
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {

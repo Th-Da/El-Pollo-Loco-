@@ -55,6 +55,9 @@ class World {
 
     checkIfEnemyIsHit() {
         this.level.enemies.forEach((object, index) => {
+            if (!(this.level.enemies[this.level.enemies.length - 1]) && this.character.isColliding(object) && this.character.isAboveGround()) {
+                this.hitEnemy(object, index);
+            }
             this.throwableObjects.forEach(bottle => {
                 this.bottleHitsEnemy(object, index, bottle);
             });
@@ -63,13 +66,17 @@ class World {
 
     bottleHitsEnemy(object, index, bottle) {
         if (bottle.isColliding(object)) {
-            object.hit();
-            object.isHittet = true;
-            if (!(object instanceof Endboss)) {
-                setTimeout(() => {
-                    this.level.enemies.splice(index, 1);
-                }, 1000);
-            }
+            this.hitEnemy(object, index, bottle);
+        }
+    }
+
+    hitEnemy(object, index, bottle) {
+        object.hit();
+        object.isHittet = true;
+        if (!(object instanceof Endboss)) {
+            setTimeout(() => {
+                this.level.enemies.splice(index, 1);
+            }, 1000);
         }
     }
 
@@ -82,14 +89,12 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy)) {
+            if (!this.character.isAboveGround() && this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
         });
     }
-
-
 
     checkCollectableObjects() {
         this.level.objects.forEach((object, index) => {
