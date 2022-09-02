@@ -20,7 +20,6 @@ class World {
         this.setWorld();
         this.checkCollision();
         this.run();
-        this.playBackgroundMusic();
     };
 
     setWorld() {
@@ -40,6 +39,7 @@ class World {
             this.createThrowableObjects();
             this.checkCollectableObjects();
             this.checkIfEnemyIsHit();
+            this.playBackgroundMusic();
         }, 200);
     }
 
