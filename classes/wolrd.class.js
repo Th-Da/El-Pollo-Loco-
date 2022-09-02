@@ -55,7 +55,7 @@ class World {
 
     checkIfEnemyIsHit() {
         this.level.enemies.forEach((object, index) => {
-            if (!(this.level.enemies[this.level.enemies.length - 1]) && this.character.isColliding(object) && this.character.isAboveGround()) {
+            if (this.character.isColliding(object) && this.character.isAboveGround()) {
                 this.hitEnemy(object, index);
             }
             this.throwableObjects.forEach(bottle => {
