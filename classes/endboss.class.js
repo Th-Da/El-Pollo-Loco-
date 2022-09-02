@@ -53,10 +53,7 @@ class Endboss extends MovableObject {
 
         setStobbableInterval(() => {
             if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                setTimeout(function () {
-                    winScreen();
-                }, 700);
+                this.playDead();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             }
@@ -80,6 +77,14 @@ class Endboss extends MovableObject {
     calculatedistance(distance) {
         distance = this.x - world.character.x
         return distance;
+    }
+
+    playDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(function () {
+            winScreen();
+            world.backgroundMusic.pause();
+        }, 700)
     }
 
 
