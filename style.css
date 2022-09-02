@@ -72,6 +72,11 @@ canvas {
     justify-content: center;
 }
 
+.note > * {
+    display: flex;
+    flex-direction: column;
+}
+
 .end-screen {
     background-image: url(img_pollo_locco/img/9_intro_outro_screens/game_over/game_over.png);
     background-size: cover;

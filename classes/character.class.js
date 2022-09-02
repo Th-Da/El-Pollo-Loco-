@@ -75,6 +75,7 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/walking.mp3');
     hurt_sound = new Audio('audio/hurt.mp3');
     jumping_sound = new Audio('audio/jumping.mp3');
+    world;
 
 
     constructor() {
@@ -94,7 +95,7 @@ class Character extends MovableObject {
         setStobbableInterval(() => {
             this.walking_sound.playbackRate = 2.5;
             this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.getEnbossX()) {
                 this.moveRight();
                 this.otherDirection = false;
                 if (!this.isAboveGround()) {
@@ -116,7 +117,7 @@ class Character extends MovableObject {
 
         setStobbableInterval(() => {
 
-            if (this.isDead()) {
+            if (this.isDead() || this.x - 250 > this.world.getEnbossX()) {
                 this.playDead();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -144,6 +145,4 @@ class Character extends MovableObject {
             this.world.backgroundMusic.pause();
         }, 1000);
     }
-
-
 }

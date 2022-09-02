@@ -48,9 +48,6 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-
-
-
         setStobbableInterval(() => {
             if (this.isDead()) {
                 this.playDead();
@@ -67,10 +64,7 @@ class Endboss extends MovableObject {
                 } else if (this.calculatedistance() > 700) {
                     this.speed = 0
                 }
-
             }
-
-
         }, 200);
     }
 

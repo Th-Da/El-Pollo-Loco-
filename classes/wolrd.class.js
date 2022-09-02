@@ -8,6 +8,7 @@ class World {
     x;
     StatusBarHealth = new StatusBarHealth();
     StatusBarBottles = new StatusBarBottles();
+    StatusBarCoins = new StatusBarCoins();
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
     isHittet = false;
@@ -72,6 +73,13 @@ class World {
         }
     }
 
+    getEnbossX() {
+        for (let index = 0; index < this.level.enemies.length; index++) {
+            let endboss = this.level.enemies[this.level.enemies.length - 1];
+            return endboss.x;
+        }
+    }
+
     checkCollision() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
@@ -88,8 +96,12 @@ class World {
             if (this.character.isColliding(object)) {
                 this.level.objects.splice(index, 1);
                 if (object instanceof Bottle1 || object instanceof Bottle2) {
-                    this.character.collect();
+                    this.character.collectBottle();
                     this.StatusBarBottles.setPercentage(this.character.bottle);
+                }
+                if (object instanceof Coin) {
+                    this.character.collectCoin();
+                    this.StatusBarCoins.setPercentage(this.character.coin);
                 }
             }
         });
@@ -109,6 +121,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0); //Back
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarBottles);
+        this.addToMap(this.StatusBarCoins);
         this.ctx.translate(this.camera_x, 0); // Foreward
 
         this.ctx.translate(-this.camera_x, 0);
