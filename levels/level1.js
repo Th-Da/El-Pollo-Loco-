@@ -32,6 +32,10 @@ const level1 = new level(
         new Cloud(),
         new Cloud(),
         new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
+        new Cloud(),
         new Cloud()
     ],
 

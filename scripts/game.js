@@ -3,7 +3,7 @@ let world;
 let keyboard;
 
 function init() {
-      keyboard = new Keyboard;
+    keyboard = new Keyboard;
 }
 
 function startGame() {
@@ -19,8 +19,15 @@ function removeStartEndElements() {
 }
 
 function gameOverScreen() {
+    exitFullscreen();
     stopGame();
-    document.getElementById('endScreen').classList.remove('d-none');    
+    document.getElementById('endScreen').classList.remove('d-none');
+}
+
+function winScreen() {
+    exitFullscreen();
+    stopGame();
+    document.getElementById('winScreen').classList.remove('d-none');
 }
 
 function stopGame() {
@@ -33,6 +40,12 @@ function restartGame() {
 
 function toggleFullScreen() {
     document.getElementById('canvas').requestFullscreen();
+}
+
+function exitFullscreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    }
 }
 
 

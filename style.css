@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    padding-top: 3%;
     display: flex;
     flex-direction: column;
     background-image: url(img_pollo_locco/img/5_background/desert-background.png);
@@ -52,7 +53,6 @@ canvas {
 	background-color:#fa9a00;
 }
 .start-button:active {
-
     top: 14.8vh;
 }
 
@@ -66,21 +66,32 @@ canvas {
     align-items: center;
 }
 
+.note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .end-screen {
     background-image: url(img_pollo_locco/img/9_intro_outro_screens/game_over/game_over.png);
     background-size: cover;
     background-position: 55%;
     position: absolute;
     top: 0;
+    left: 0;
     height: -webkit-fill-available;
     width: -webkit-fill-available;
 }
 
-.end-screen img {
+.win-screen {
+    background-color: rgba(0,0,0, 0.4);
+    height: 100vh;
+    width: 100vw;
     position: absolute;
-    left: 40%;
-    bottom: 5%;
+    top: 0;
+    left: 0;
 }
+
 
 .full-screen {
     position: absolute;
@@ -116,6 +127,9 @@ canvas {
         display: none;
     }
     .how2play {
+        display: none;
+    }
+    .note {
         display: none;
     }
 }

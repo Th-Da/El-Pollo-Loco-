@@ -101,8 +101,8 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.objects);
         this.addToMap(this.character);
 
@@ -137,8 +137,8 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-/*         mo.drawFrame(this.ctx);
- */
+        mo.drawFrame(this.ctx);
+
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }

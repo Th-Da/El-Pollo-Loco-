@@ -52,6 +52,7 @@
             </div>
         </div>
 
+        
         <div id="how2play" class="how2play">
             <h3>How To Play:</h3>
 
@@ -71,15 +72,19 @@
                 <img class="btn-descr" src="img_pollo_locco/img/5_background/throw.png" alt="">
                 throw bottle
             </div>
-
-
+        </div>
+        <div class="note">
+            <h3>Note:</h3>
+            <span> You can not kill the baby chickens</span>
         </div>
 
         <button id="startButton" class="start-button" onclick="startGame()">Start Game</button>
 
         <div id="endScreen" class="end-screen d-none">
-            <button id="startScreen" class="start-button" onclick="restartGame()"></button>Start Game</button>
-            
+            <button class="start-button" onclick="restartGame()">Restart Game</button>
+        </div>
+        <div id="winScreen" class=" win-screen d-none">
+            <button class="start-button" onclick="restartGame()">You Won!<br>Restart Game</button>
         </div>
     </div>
 
