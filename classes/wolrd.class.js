@@ -55,13 +55,24 @@ class World {
 
     checkIfEnemyIsHit() {
         this.level.enemies.forEach((object, index) => {
-            if (this.character.isColliding(object) && this.character.isAboveGround()) {
+            if (!(object instanceof Endboss) && !(object instanceof SmallChicken) && this.character.isColliding(object) && this.character.isAboveGround()) {
                 this.hitEnemy(object, index);
+                object.isHittet = true;
+                
             }
             this.throwableObjects.forEach(bottle => {
                 this.bottleHitsEnemy(object, index, bottle);
             });
         });
+    }
+
+    hitEnemy(enemy, index) {
+        enemy.hit();
+        if (!(enemy instanceof Endboss)) {
+            setTimeout(() => {
+                this.level.enemies.splice(index, 1);
+            }, 1000);
+        }
     }
 
     bottleHitsEnemy(object, index, bottle) {
@@ -70,14 +81,13 @@ class World {
         }
     }
 
-    hitEnemy(object, index, bottle) {
-        object.hit();
-        object.isHittet = true;
-        if (!(object instanceof Endboss)) {
-            setTimeout(() => {
-                this.level.enemies.splice(index, 1);
-            }, 1000);
-        }
+    checkCollision() {
+        this.level.enemies.forEach(enemy => {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
+                this.character.hit();
+                this.StatusBarHealth.setPercentage(this.character.energy);
+            }
+        });
     }
 
     getEnbossX() {
@@ -85,15 +95,6 @@ class World {
             let endboss = this.level.enemies[this.level.enemies.length - 1];
             return endboss.x;
         }
-    }
-
-    checkCollision() {
-        this.level.enemies.forEach(enemy => {
-            if (!this.character.isAboveGround() && this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.StatusBarHealth.setPercentage(this.character.energy);
-            }
-        });
     }
 
     checkCollectableObjects() {

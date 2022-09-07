@@ -25,10 +25,12 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
+            if (!mo.isHittet) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
             this.y < mo.y + mo.height
+            }
     }
 
     hit() {
@@ -37,6 +39,7 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+            this.isHittet = true;
         }
     }
 
@@ -48,6 +51,10 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+    }
+
+    noDamag() {
+
     }
 
     playAnimation(images) {

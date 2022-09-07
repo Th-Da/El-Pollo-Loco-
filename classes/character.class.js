@@ -75,7 +75,7 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/walking.mp3');
     hurt_sound = new Audio('audio/hurt.mp3');
     jumping_sound = new Audio('audio/jumping.mp3');
-    world;
+    isHittet = false;
 
 
     constructor() {
@@ -95,7 +95,7 @@ class Character extends MovableObject {
         setStobbableInterval(() => {
             this.walking_sound.playbackRate = 2.5;
             this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.getEnbossX()) {
+            if (this.world.keyboard.RIGHT && this.x < (this.world.getEnbossX() - 100)) {
                 this.moveRight();
                 this.otherDirection = false;
                 if (!this.isAboveGround()) {
@@ -117,12 +117,12 @@ class Character extends MovableObject {
 
         setStobbableInterval(() => {
 
-            if (this.isDead() || this.x - 250 > this.world.getEnbossX()) {
+            if (this.isDead() || this.x - 100 > this.world.getEnbossX()) {
                 this.playDead();
             } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.hurt_sound.volume = 0.1;
-                this.hurt_sound.play();
+                    this.playAnimation(this.IMAGES_HURT);
+                    this.hurt_sound.volume = 0.1;
+                    this.hurt_sound.play();
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
                 this.jumping_sound.volume = 0.5;
@@ -132,7 +132,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
-            } 
+            }
 
         }, 160);
     }
