@@ -17,12 +17,15 @@ body {
 }
 
 .d-none {
-    display: none ;
+    display: none;
+}
+
+.container {
+    position: relative;
 }
 
 canvas {
     background-color: black;
-    background-image: url(./img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png);
     background-size: cover;
     background-position: 55%;
     border-radius: 10px 10px 10px 10px;
@@ -33,29 +36,30 @@ canvas {
 
 .start-button {
     position: absolute;
-    left: calc(50% - 85px);
-    top: 15vh;
-	box-shadow:inset 0px 1px 0px 0px #fff6af;
-	background:linear-gradient(to bottom, #fae457 5%, #fa9a00 100%);
-	background-color:#fae457;
+    width: 200px;
+    left: calc(50% - 100px);
+    top: 10vh;
+    box-shadow: inset 0px 1px 0px 0px #fff6af;
+    background: linear-gradient(to bottom, #fae457 5%, #fa9a00 100%);
+    background-color: #fae457;
     font-family: 'Rubik Dirt';
-	border-radius:6px;
-	border:1px solid #f59300;
-	cursor:pointer;
-	color:#1f1e1f;
-	font-size:20px;
-
-	padding:10px 24px;
-	text-decoration:none;
-	text-shadow:0px 2px 1px #ffee66;
+    border-radius: 6px;
+    border: 1px solid #f59300;
+    cursor: pointer;
+    color: #1f1e1f;
+    font-size: 20px;
+    padding: 10px 24px;
+    text-decoration: none;
+    text-shadow: 0px 2px 1px #ffee66;
 }
 
 .start-button:hover {
-	background:linear-gradient(to bottom, #fa9a00 5%, #fae457 100%);
-	background-color:#fa9a00;
+    background: linear-gradient(to bottom, #fa9a00 5%, #fae457 100%);
+    background-color: #fa9a00;
 }
+
 .start-button:active {
-    top: 14.8vh;
+    top: 10.5vh;
 }
 
 .how2play {
@@ -63,7 +67,7 @@ canvas {
     justify-content: space-evenly;
 }
 
-.how2play > * {
+.how2play>* {
     display: flex;
     align-items: center;
 }
@@ -78,9 +82,18 @@ canvas {
     margin-right: 3%;
 }
 
-.note > * {
+.note>* {
     display: flex;
     flex-direction: column;
+}
+
+.start-screen {
+    background-size: cover;
+    border-radius: 10px 10px 10px 10px;
+    pointer-events: none;
+    z-index: 1;
+    height: 480px;
+    width: 720px;
 }
 
 .end-screen {
@@ -90,12 +103,12 @@ canvas {
     position: absolute;
     top: 0;
     left: 0;
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: 100vh;
+    width: 100vw;
 }
 
 .win-screen {
-    background-color: rgba(0,0,0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -131,15 +144,23 @@ canvas {
     canvas {
         width: 100%;
     }
+
     .start-button {
-        top: 4vh;
+        top: 70px;
     }
+
+    .start-button:active {
+        top: 23.5vh;
+    }
+
     .full-screen {
         display: none;
     }
+
     .how2play {
         display: none;
     }
+
     .note {
         display: none;
     }
@@ -148,5 +169,22 @@ canvas {
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .start-button {
+        left: calc(50% - 100px);
+    }
+}
+
+
+@media only screen and (max-height: 420px) {
+    .start-button {
+        top: 85px;
+    }
+
+    .start-button:active {
+        top: 90px;
     }
 }

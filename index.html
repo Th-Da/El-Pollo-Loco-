@@ -8,7 +8,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./fonts.css">    
+    <link rel="stylesheet" href="./fonts.css">
 
     <script src="./scripts/assetFunctions.js"></script>
     <script src="./classes/drawable-object.class.js"></script>
@@ -39,10 +39,14 @@
     <!--     <h1>El pollo loco</h1>
  -->
     <div id="container" class="container">
-        <canvas id="canvas" width="720" height="480">
+        <canvas id="canvas" class="d-none" width="720" height="480">
         </canvas>
-        <img class="full-screen" src="img_pollo_locco/img/5_background/fullscreen.png" alt=""
+        <img id="startScreen" class="start-screen"
+            src="img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png" alt="">
+
+        <img class="full-screen d-none" id="fullScreen" src="img_pollo_locco/img/5_background/fullscreen.png" alt=""
             onclick="toggleFullScreen()">
+
         <div id="btnsBottom" class="btns-bottom">
             <div>
                 <img class="btn-left" id="btnLeft" src="img_pollo_locco/img/5_background/left.png" alt="">
@@ -53,7 +57,6 @@
                 <img class="btn-throw" id="btnThrow" src="img_pollo_locco/img/5_background/throw.png" alt="">
             </div>
         </div>
-
 
         <div id="how2play" class="how2play">
             <h3>How To Play:</h3>
@@ -72,7 +75,7 @@
             </div>
             <div>
                 <img class="btn-descr" src="img_pollo_locco/img/5_background/throw.png" alt="">
-                throw bottle
+                throw bottle (space)
             </div>
         </div>
         <div class="note">
@@ -85,13 +88,14 @@
 
         <button id="startButton" class="start-button" onclick="startGame()">Start Game</button>
 
-        <div id="endScreen" class="end-screen d-none">
-            <button class="start-button" onclick="restartGame()">Restart Game</button>
-        </div>
-        <div id="winScreen" class=" win-screen d-none">
-            <button class="start-button" onclick="restartGame()">You Won!<br>Restart Game</button>
-        </div>
     </div>
+    <div id="endScreen" class="end-screen d-none">
+        <button class="start-button" onclick="restartGame()">Restart Game</button>
+    </div>
+    <div id="winScreen" class=" win-screen d-none">
+        <button class="start-button" onclick="restartGame()">You Won!<br>Restart Game</button>
+    </div>
+
 
 
 

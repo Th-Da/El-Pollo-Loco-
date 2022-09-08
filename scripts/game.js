@@ -14,9 +14,13 @@ function startGame() {
 
 function removeStartEndElements() {
     document.getElementById('startButton').classList.add('d-none');
+    document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('canvas').style.backgroundImage = 'none';
+    document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('endScreen').classList.add('d-none');
     document.getElementById('btnsBottom').style.display = 'flex';
+    document.getElementById('fullScreen').classList.remove('d-none');
+    
 }
 
 function gameOverScreen() {
