@@ -4,8 +4,6 @@ class DrawableObject {
     img;
     imageCache = {};
     currentImage = 0;
-    bottle = 0;
-    coin = 0;
 
 
     loadImage(path) {
@@ -33,14 +31,5 @@ class DrawableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
-    }
-
-    collectBottle () {
-        this.bottle += 20;
-    }
-
-    collectCoin() {
-        this.coin += 20;
-
     }
 }

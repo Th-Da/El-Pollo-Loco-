@@ -58,10 +58,6 @@ canvas {
     background-color: #fa9a00;
 }
 
-.start-button:active {
-    top: 10.5vh;
-}
-
 .how2play {
     display: flex;
     justify-content: space-evenly;

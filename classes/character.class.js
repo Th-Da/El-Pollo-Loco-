@@ -6,6 +6,8 @@ class Character extends MovableObject {
     width = 160;
     height = 260;
     energy = 100;
+    bottle = 0;
+    coin = 0;
 
     IMAGES_IDLE = [
         'img_pollo_locco/img/2_character_pepe/1_idle/idle/I-1.png',
@@ -144,5 +146,12 @@ class Character extends MovableObject {
             gameOverScreen();
             this.world.backgroundMusic.pause();
         }, 1000);
+    }
+
+    collectCoin() {
+        this.coin += 10;
+    }
+    collectBottle () {
+        this.bottle += 20;
     }
 }

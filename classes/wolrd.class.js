@@ -55,10 +55,10 @@ class World {
 
     checkIfEnemyIsHit() {
         this.level.enemies.forEach((object, index) => {
-            if (!(object instanceof Endboss) && !(object instanceof SmallChicken) && this.character.isColliding(object) && this.character.isAboveGround()) {
+            if (this.normalChickenIsHitedFromTop(object)) {
                 this.hitEnemy(object, index);
                 object.isHittet = true;
-                
+
             }
             this.throwableObjects.forEach(bottle => {
                 this.bottleHitsEnemy(object, index, bottle);
@@ -152,11 +152,15 @@ class World {
     }
 
     addToMap(mo) {
+
         if (mo.otherDirection) {
             this.flipImage(mo);
+
         }
+
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -173,5 +177,14 @@ class World {
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
+    }
+
+    normalChickenIsHitedFromTop(object) {
+        return object.y + object.y > this.character.y - this.character.height &&
+            !(object instanceof Endboss) &&
+            !(object instanceof SmallChicken) &&
+            this.character.isColliding(object) &&
+            this.character.isAboveGround()
+
     }
 }
