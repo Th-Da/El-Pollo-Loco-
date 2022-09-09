@@ -27,7 +27,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return true;
         } else {
-            return this.y < 190;
+            return this.y < this.ground;
         }
     }
 

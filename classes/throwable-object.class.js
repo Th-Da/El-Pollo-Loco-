@@ -33,10 +33,17 @@ class ThrowableObject extends MovableObject {
 
     throw() {
         setStobbableInterval(() => {
+
+            if (world.character.otherDirection) {
+                this.x -= 30
+                this.speed = -7;
+            } else if (!world.character.otherDirection) {
+                this.x += 30;
+                this.speedY = 7;
+            }
             this.playAnimation(this.IMAGES_TRHOWABLE)
             this.applyGravity();
-            this.speedY = 7;
-            this.x += 30;
+  
             world.level.enemies.forEach(enem => {
                 if (enem.isHittet) {
                     this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);

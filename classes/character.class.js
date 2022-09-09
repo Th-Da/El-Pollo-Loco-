@@ -7,6 +7,7 @@ class Character extends MovableObject {
 
     speed = 10;
     energy = 100;
+    ground = 190;
 
     bottle = 0;
     coin = 0;
@@ -87,6 +88,7 @@ class Character extends MovableObject {
     hurt_sound = new Audio('audio/hurt.mp3');
     jumping_sound = new Audio('audio/jumping.mp3');
     isHittet = false;
+
 
 
     constructor() {

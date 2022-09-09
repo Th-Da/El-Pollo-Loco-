@@ -46,7 +46,11 @@ class World {
 
     createThrowableObjects() {
         if (this.keyboard.SPACE && this.character.bottle > 0) {
-            this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
+            if (this.character.otherDirection) {
+                this.throwableObjects.push(new ThrowableObject(this.character.x - 100, this.character.y + 100));
+            } else if (!this.character.otherDirection) {
+                this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
+            }
             this.character.bottle -= 20;
             this.StatusBarBottles.setPercentage(this.character.bottle);
 
@@ -83,10 +87,11 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !(enemy instanceof Endboss)) {
+            if (this.character.isColliding(enemy) && enemy instanceof SmallChicken) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
-            } else if (this.character.isColliding(enemy) && enemy instanceof Endboss) {
+            }
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
@@ -128,11 +133,12 @@ class World {
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0); //Back
+
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarBottles);
         this.addToMap(this.StatusBarCoins);
-        this.ctx.translate(this.camera_x, 0); // Foreward
 
+        this.ctx.translate(this.camera_x, 0); // Foreward
         this.ctx.translate(-this.camera_x, 0);
 
 
@@ -183,7 +189,7 @@ class World {
     }
 
     normalChickenIsHittedFromTop(object) {
-        return object.y + object.y > this.character.y - this.character.height &&
+        return object.y + object.height > this.character.y - this.character.height &&
             !(object instanceof Endboss) &&
             !(object instanceof SmallChicken) &&
             this.character.isColliding(object) &&
