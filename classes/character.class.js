@@ -2,12 +2,21 @@ class Character extends MovableObject {
 
     y = 190;
     x = 100;
-    speed = 10;
     width = 160;
     height = 260;
+
+    speed = 10;
     energy = 100;
+
     bottle = 0;
     coin = 0;
+
+    offset = {
+        top: 90,
+        left: 20,
+        right: 40,
+        bottom: 10
+    }
 
     IMAGES_IDLE = [
         'img_pollo_locco/img/2_character_pepe/1_idle/idle/I-1.png',

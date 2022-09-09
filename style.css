@@ -34,11 +34,9 @@ canvas {
     z-index: 1;
 }
 
-.start-button {
+.start-game {
     position: absolute;
     width: 200px;
-    left: calc(50% - 100px);
-    top: 10vh;
     box-shadow: inset 0px 1px 0px 0px #fff6af;
     background: linear-gradient(to bottom, #fae457 5%, #fa9a00 100%);
     background-color: #fae457;
@@ -53,9 +51,20 @@ canvas {
     text-shadow: 0px 2px 1px #ffee66;
 }
 
-.start-button:hover {
+.start-game:hover {
     background: linear-gradient(to bottom, #fa9a00 5%, #fae457 100%);
     background-color: #fa9a00;
+}
+
+.position-start-button {
+    top: 10vh;
+    left: calc(50% - 100px);
+}
+
+.position-restart-button {
+    position: absolute;
+    top: 14vh;
+    left: calc(50% - 100px);
 }
 
 .how2play {
@@ -141,12 +150,10 @@ canvas {
         width: 100%;
     }
 
-    .start-button {
-        top: 70px;
-    }
-
-    .start-button:active {
-        top: 23.5vh;
+    .position-restart-button {
+        position: absolute;
+        top: 10vh;
+        left: calc(50% - 100px);
     }
 
     .full-screen {
@@ -166,21 +173,41 @@ canvas {
     canvas {
         height: 100vh;
     }
-}
 
-@media only screen and (max-width: 568px) {
-    .start-button {
+    .position-start-button {
+        top: 10vh;
         left: calc(50% - 100px);
     }
+
 }
+
+
 
 
 @media only screen and (max-height: 420px) {
-    .start-button {
-        top: 85px;
+
+    .position-restart-button {
+        top: 50px;
     }
 
-    .start-button:active {
-        top: 90px;
+    .position-start-button {
+        top: 80px;
+    }
+}
+
+@media only screen and (max-height: 360px) {
+
+    .position-restart-button {
+        top: 25px;
+    }
+
+    .position-start-button {
+        top: 100px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .position-start-button {
+        left: calc(58% - 100px);
     }
 }

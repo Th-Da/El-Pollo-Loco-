@@ -55,7 +55,7 @@ class World {
 
     checkIfEnemyIsHit() {
         this.level.enemies.forEach((object, index) => {
-            if (this.normalChickenIsHitedFromTop(object)) {
+            if (this.normalChickenIsHittedFromTop(object)) {
                 this.hitEnemy(object, index);
                 object.isHittet = true;
 
@@ -155,11 +155,11 @@ class World {
 
         if (mo.otherDirection) {
             this.flipImage(mo);
-
         }
 
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.draw2Frame(this.ctx)
 
 
         if (mo.otherDirection) {
@@ -179,7 +179,7 @@ class World {
         this.ctx.restore();
     }
 
-    normalChickenIsHitedFromTop(object) {
+    normalChickenIsHittedFromTop(object) {
         return object.y + object.y > this.character.y - this.character.height &&
             !(object instanceof Endboss) &&
             !(object instanceof SmallChicken) &&
