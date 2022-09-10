@@ -87,7 +87,7 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && enemy instanceof SmallChicken) {
+            if (this.character.isColliding(enemy) && (enemy instanceof SmallChicken || enemy instanceof Endboss)) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
