@@ -12,6 +12,7 @@ class World {
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
     isHittet = false;
+    enemyPositionX;
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -33,7 +34,8 @@ class World {
             this.createThrowableObjects();
             this.checkCollectableObjects();
             this.checkIfEnemyIsHit();
-            this.playBackgroundMusic();
+/*             this.getEnemiesX();
+ */            this.playBackgroundMusic();
         }, 200);
     }
 
@@ -101,6 +103,12 @@ class World {
             let endboss = this.level.enemies[this.level.enemies.length - 1];
             return endboss.x;
         }
+    }
+
+    getEnemiesX() {
+        this.level.enemies.forEach(enemy => {
+            this.enemyPositionX = enemy.x;
+        });
     }
 
     checkCollectableObjects() {

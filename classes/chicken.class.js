@@ -3,7 +3,7 @@ class Chicken extends MovableObject {
     width = 80;
     height = 80;
     y = 350;;
-    
+
     energy = 1;
     isHittet = false;
 
@@ -36,7 +36,10 @@ class Chicken extends MovableObject {
 
     animate() {
         setStobbableInterval(() => {
-            this.moveLeft();
+            if (!(this.x == this.getEnbossX())) {
+
+                this.moveLeft();
+            }
         }, 1000 / 60);
 
         setStobbableInterval(() => {
@@ -44,9 +47,8 @@ class Chicken extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.speed = 0;
             } else {
-            this.playAnimation(this.IMAGES_WALKING);
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 200);
     }
-
 }

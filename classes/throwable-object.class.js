@@ -47,10 +47,8 @@ class ThrowableObject extends MovableObject {
                 this.x += 25;
                 this.speedY = 6;
             }
-
             this.playAnimation(this.IMAGES_TRHOWABLE)
             this.applyGravity();
-
             world.level.enemies.forEach(enem => {
                 if (enem.isHittet) {
                     this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);

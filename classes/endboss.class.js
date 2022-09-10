@@ -68,6 +68,7 @@ class Endboss extends MovableObject {
                     this.playAnimation(this.IMAGES_WALKING);
                     setStobbableInterval(() => {
                         this.moveLeft();
+                        this.setEndbossX(this.x);
                     }, 1000);
                 } else if (this.calculatedistance() > 700) {
                     this.speed = 0
@@ -88,6 +89,4 @@ class Endboss extends MovableObject {
             world.backgroundMusic.pause();
         }, 700)
     }
-
-
 }

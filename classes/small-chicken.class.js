@@ -45,7 +45,6 @@ class SmallChicken extends MovableObject {
         }, 200);
 
         setStobbableInterval(() => {
-
             if (!this.isAboveGround()) {
                 this.jump()
             }

@@ -1,10 +1,11 @@
-
 class StatusBarCoins extends DrawableObject {
 
     width = 200;
     height = 60;
     x = 0;
     y = 110;
+
+    percentage = 0;
 
     IMAGES = [
         'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/orange/0.png',
@@ -14,8 +15,6 @@ class StatusBarCoins extends DrawableObject {
         'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/orange/80.png',
         'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/orange/100.png'
     ];
-
-    percentage = 0;
 
     constructor() {
         super().loadImage(this.IMAGES[0]);

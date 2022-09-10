@@ -12,10 +12,9 @@ class Bottle1 extends DrawableObject {
         bottom: 5
     }
 
-
     constructor() {
         super().loadImage('img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
         this.x = 200 + Math.random() * 1900;
     }
-    
+
 };

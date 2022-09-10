@@ -6,6 +6,8 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2;
     lastHit = 0;
+    enemyPositionX;
+    endbossPositionX = 2500;
 
     offset = {
         top: 0,
@@ -79,6 +81,15 @@ class MovableObject extends DrawableObject {
         this.speedY = 30;
     }
 
+    setEndbossX(positionX) {
+        this.endbossPositionX = positionX;
+    }
+
+    getEnbossX() {
+        positionX = this.endbossPositionX;
+        return positionX
+
+    }
 
 }
 
