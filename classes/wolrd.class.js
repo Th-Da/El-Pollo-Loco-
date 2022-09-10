@@ -167,9 +167,9 @@ class World {
         }
 
         mo.draw(this.ctx);
-/*         mo.drawFrame(this.ctx);
-        mo.draw2Frame(this.ctx)
- */
+        /*         mo.drawFrame(this.ctx);
+                mo.draw2Frame(this.ctx)
+         */
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -193,7 +193,8 @@ class World {
             !(object instanceof Endboss) &&
             !(object instanceof SmallChicken) &&
             this.character.isColliding(object) &&
-            this.character.isAboveGround()
+            this.character.isAboveGround() &&
+            this.character.speedY < 0
 
     }
 }

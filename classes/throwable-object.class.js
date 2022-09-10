@@ -27,23 +27,30 @@ class ThrowableObject extends MovableObject {
         this - this.loadImages(this.IMAGES_TRHOWABLE_SPLASH);
         this.x = x;
         this.y = y;
+        if (world.character.otherDirection) {
+            this.otherDirection = true;
+        }
+        if (!world.character.otherDirection) {
+            this.otherDirection = false;
+        }
         this.throw(x, y);
     }
 
 
     throw() {
         setStobbableInterval(() => {
-
-            if (world.character.otherDirection) {
-                this.x -= 30
-                this.speed = -7;
-            } else if (!world.character.otherDirection) {
-                this.x += 30;
-                this.speedY = 7;
+            if (this.otherDirection) {
+                this.x -= 25
+                this.speed = -6;
             }
+            if (!this.otherDirection) {
+                this.x += 25;
+                this.speedY = 6;
+            }
+
             this.playAnimation(this.IMAGES_TRHOWABLE)
             this.applyGravity();
-  
+
             world.level.enemies.forEach(enem => {
                 if (enem.isHittet) {
                     this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);

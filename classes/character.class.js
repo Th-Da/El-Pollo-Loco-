@@ -104,52 +104,88 @@ class Character extends MovableObject {
 
 
     animate() {
-
-        setStobbableInterval(() => {
-            this.walking_sound.playbackRate = 2.5;
-            this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < (this.world.getEnbossX() - 100)) {
-                this.moveRight();
-                this.otherDirection = false;
-                if (!this.isAboveGround()) {
-                    this.walking_sound.play();
-                }
-            }
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                if (!this.isAboveGround()) {
-                    this.walking_sound.play();
-                }
-            }
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
-                this.jump();
-            }
-            this.world.camera_x = -this.x + 100;
-        }, 1000 / 60);
-
-        setStobbableInterval(() => {
-
-            if (this.isDead() || this.x - 100 > this.world.getEnbossX()) {
-                this.playDead();
-            } else if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT);
-                    this.hurt_sound.volume = 0.1;
-                    this.hurt_sound.play();
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-                this.jumping_sound.volume = 0.5;
-                this.jumping_sound.play();
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                // walk animation
-                this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.playAnimation(this.IMAGES_IDLE);
-            }
-
-        }, 160);
+        setStobbableInterval(() => this.moveCharacter(), 1000 / 60);
+        setStobbableInterval(() => this.playCharacter(), 160);
     }
 
+    moveCharacter() {
+        this.walking_sound.playbackRate = 2.5;
+        this.walking_sound.pause();
+        if (this.canMoveRight())
+            this.moveRight();
+        if (this.canMoveLeft())
+            this.moveLeft();
+        if (this.canJump()) {
+            this.jump();
+        }
+        this.backgroundCanMove();
+    }
+
+    playCharacter() {
+        if (this.characterIsDead())
+            this.playDead();
+        else if (this.isHurt())
+            this.playHurt();
+        else if (this.isAboveGround())
+            this.playJump();
+        else if (this.isWalking())
+            this.playAnimation(this.IMAGES_WALKING);
+        else
+            this.playAnimation(this.IMAGES_IDLE);
+
+    }
+
+    canMoveRight() {
+        return this.world.keyboard.RIGHT && this.x < (this.world.getEnbossX() - 100)
+    }
+
+    moveRight() {
+        super.moveRight();
+        this.otherDirection = false;
+        if (!this.isAboveGround()) {
+            this.walking_sound.play();
+        }
+    }
+
+    canMoveLeft() {
+        return this.world.keyboard.LEFT && this.x > 0
+    }
+
+    moveLeft() {
+        super.moveLeft();
+        this.otherDirection = true;
+        if (!this.isAboveGround()) {
+            this.walking_sound.play();
+        }
+    }
+
+    canJump() {
+        return this.world.keyboard.UP && !this.isAboveGround()
+    }
+
+    backgroundCanMove() {
+        this.world.camera_x = -this.x + 100;
+    }
+
+    characterIsDead() {
+        return this.isDead() || this.x - 100 > this.world.getEnbossX()
+    }
+
+    playHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        this.hurt_sound.volume = 0.1;
+        this.hurt_sound.play();
+    }
+
+    playJump() {
+        this.playAnimation(this.IMAGES_JUMPING);
+        this.jumping_sound.volume = 0.5;
+        this.jumping_sound.play();
+    }
+
+    isWalking() {
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT
+    }
     playDead() {
 
         this.playAnimation(this.IMAGES_DEAD);
@@ -162,7 +198,7 @@ class Character extends MovableObject {
     collectCoin() {
         this.coin += 10;
     }
-    collectBottle () {
+    collectBottle() {
         this.bottle += 20;
     }
 }
