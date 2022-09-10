@@ -27,13 +27,6 @@ class World {
         this.character.world = this;
     }
 
-    playBackgroundMusic() {
-        this.backgroundMusic.volume = 0.02;
-        this.backgroundMusic.play();
-        this.backgroundMusic.loop = true;
-    }
-
-
     run() {
         setStobbableInterval(() => {
             this.checkCollision();
@@ -44,12 +37,18 @@ class World {
         }, 200);
     }
 
+    playBackgroundMusic() {
+        this.backgroundMusic.volume = 0.02;
+        this.backgroundMusic.play();
+        this.backgroundMusic.loop = true;
+    }
+
     createThrowableObjects() {
         if (this.keyboard.SPACE && this.character.bottle > 0) {
             if (this.character.otherDirection) {
-                this.throwableObjects.push(new ThrowableObject(this.character.x - 100, this.character.y + 100));
+                this.creatBottleLeft();
             } else if (!this.character.otherDirection) {
-                this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
+                this.creatBottleRight();
             }
             this.character.bottle -= 20;
             this.StatusBarBottles.setPercentage(this.character.bottle);
@@ -62,7 +61,6 @@ class World {
             if (this.normalChickenIsHittedFromTop(object)) {
                 this.hitEnemy(object, index);
                 object.isHittet = true;
-
             }
             this.throwableObjects.forEach(bottle => {
                 this.bottleHitsEnemy(object, index, bottle);
@@ -87,11 +85,11 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
-            if (this.character.isColliding(enemy) && (enemy instanceof SmallChicken || enemy instanceof Endboss)) {
+            if (this.enemyHitsCharacter(enemy)) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
+            if (this.normalChickenHitsCharacter(enemy)) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
@@ -121,7 +119,6 @@ class World {
         });
     }
 
-
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -131,33 +128,22 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.objects);
         this.addToMap(this.character);
-
-        this.ctx.translate(-this.camera_x, 0); //Back
-
+        this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarBottles);
         this.addToMap(this.StatusBarCoins);
-
-        this.ctx.translate(this.camera_x, 0); // Foreward
+        this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
-
-
-
-        // draw() wird immer wieder aufgerufen 
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
     }
 
-
     addObjectsToMap(objects) {
-
         objects.forEach(o => {
             this.addToMap(o);
-
         });
-
     }
 
     addToMap(mo) {
@@ -165,12 +151,9 @@ class World {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-
         mo.draw(this.ctx);
-        /*         mo.drawFrame(this.ctx);
-                mo.draw2Frame(this.ctx)
-         */
-
+        mo.drawFrame(this.ctx);
+        mo.draw2Frame(this.ctx)
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -188,6 +171,14 @@ class World {
         this.ctx.restore();
     }
 
+    creatBottleLeft() {
+        this.throwableObjects.push(new ThrowableObject(this.character.x - 100, this.character.y + 100));
+    }
+
+    creatBottleRight() {
+        this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
+    }
+
     normalChickenIsHittedFromTop(object) {
         return object.y + object.height > this.character.y - this.character.height &&
             !(object instanceof Endboss) &&
@@ -195,6 +186,14 @@ class World {
             this.character.isColliding(object) &&
             this.character.isAboveGround() &&
             this.character.speedY < 0
+    }
 
+    enemyHitsCharacter(enemy) {
+        return this.character.isColliding(enemy) && (enemy instanceof SmallChicken || enemy instanceof Endboss)
+    }
+
+    normalChickenHitsCharacter(enemy) {
+        return this.character.isColliding(enemy) && !this.character.isAboveGround()
     }
 }
+
