@@ -6,8 +6,6 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2;
     lastHit = 0;
-    enemyPositionX;
-    endbossPositionX = 2500;
 
     offset = {
         top: 0,
@@ -80,15 +78,11 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
-
-    setEndbossX(positionX) {
-        this.endbossPositionX = positionX;
-    }
-
-    getEnbossX() {
-        positionX = this.endbossPositionX;
-        return positionX
-
+    getEndbossPositionX() {
+        for (let index = 0; index < level1.enemies.length; index++) {
+            let endboss = level1.enemies[level1.enemies.length - 1];
+            return endboss.x;
+        }
     }
 
 }

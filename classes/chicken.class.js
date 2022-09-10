@@ -6,6 +6,7 @@ class Chicken extends MovableObject {
 
     energy = 1;
     isHittet = false;
+    isAtMapStart = false;
 
     offset = {
         top: 0,
@@ -36,10 +37,14 @@ class Chicken extends MovableObject {
 
     animate() {
         setStobbableInterval(() => {
-            if (!(this.x == this.getEnbossX())) {
-
+            if (this.x <= 0) {
+                this.isAtMapStart = true;
+                this.otherDirection = true;
+                this.moveRight();
+            } else if (!(this.x >= this.getEndbossPositionX() && this.isAtMapStart)) {
                 this.moveLeft();
             }
+
         }, 1000 / 60);
 
         setStobbableInterval(() => {
