@@ -84,6 +84,5 @@ class MovableObject extends DrawableObject {
             return endboss.x;
         }
     }
-
 }
 

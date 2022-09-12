@@ -27,12 +27,7 @@ class ThrowableObject extends MovableObject {
         this - this.loadImages(this.IMAGES_TRHOWABLE_SPLASH);
         this.x = x;
         this.y = y;
-        if (world.character.otherDirection) {
-            this.otherDirection = true;
-        }
-        if (!world.character.otherDirection) {
-            this.otherDirection = false;
-        }
+        this.setDirection();
         this.throw(x, y);
     }
 
@@ -56,5 +51,13 @@ class ThrowableObject extends MovableObject {
                 }
             });
         }, 120);
+    }
+
+    setDirection() {
+        if (world.character.otherDirection)
+            this.otherDirection = true;
+        if (!world.character.otherDirection)
+            this.otherDirection = false;
+
     }
 }

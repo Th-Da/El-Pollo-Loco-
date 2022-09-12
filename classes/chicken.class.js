@@ -30,21 +30,29 @@ class Chicken extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 350 + Math.random() * 1900;
-        this.speed = 0.15 + Math.random() * 0.5;
+        this.speed = 1 + Math.random() * 0.5;
         this.animate();
     }
 
 
     animate() {
         setStobbableInterval(() => {
-            if (this.x <= 0) {
-                this.isAtMapStart = true;
+            this.moveLeft();
+            if (this.x <= 10) {
+                clearInterval(moveLeft);
                 this.otherDirection = true;
-                this.moveRight();
-            } else if (!(this.x >= this.getEndbossPositionX() && this.isAtMapStart)) {
-                this.moveLeft();
-            }
+                var moveRight = setInterval(() => {
+                    this.moveRight();
+                }, 1000);
+            } if (this.x > this.getEndbossPositionX() - 200) {
+                this.otherDirection = false;
+                clearInterval(moveRight);
+                var moveLeft = setInterval(() => {
+                    this.moveLeft();
+                }, 1000);
 
+
+            }
         }, 1000 / 60);
 
         setStobbableInterval(() => {
@@ -56,4 +64,13 @@ class Chicken extends MovableObject {
             }
         }, 200);
     }
+
+    getChickenPosition() {
+        level1.enemies.forEach(enemy => {
+            return enemy.x
+        });
+    }
+
+
+
 }
