@@ -32,8 +32,20 @@ class SmallChicken extends MovableObject {
 
     animate() {
         setStobbableInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
+            if (this.otherDirection) {
+                this.otherDirection = false
+            } else if (!this.otherDirection) {
+                this.otherDirection = true;
+            }
+        }, 20000);
+
+        setStobbableInterval(() => {
+            if (this.otherDirection) {
+                this.moveRight();
+            } else {
+                this.moveLeft();
+            }
+        }, 30);
 
         setStobbableInterval(() => {
             if (this.isDead()) {

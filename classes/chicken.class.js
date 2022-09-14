@@ -37,23 +37,20 @@ class Chicken extends MovableObject {
 
     animate() {
         setStobbableInterval(() => {
-            this.moveLeft();
-            if (this.x <= 10) {
-                clearInterval(moveLeft);
+            if (this.otherDirection) {
+                this.otherDirection = false
+            } else if (!this.otherDirection) {
                 this.otherDirection = true;
-                var moveRight = setInterval(() => {
-                    this.moveRight();
-                }, 1000);
-            } if (this.x > this.getEndbossPositionX() - 200) {
-                this.otherDirection = false;
-                clearInterval(moveRight);
-                var moveLeft = setInterval(() => {
-                    this.moveLeft();
-                }, 1000);
-
-
             }
-        }, 1000 / 60);
+        }, 20000);
+
+        setStobbableInterval(() => {
+            if (this.otherDirection) {
+                this.moveRight();
+            } else {
+                this.moveLeft();
+            }
+        }, 30)
 
         setStobbableInterval(() => {
             if (this.isDead()) {
@@ -64,13 +61,6 @@ class Chicken extends MovableObject {
             }
         }, 200);
     }
-
-    getChickenPosition() {
-        level1.enemies.forEach(enemy => {
-            return enemy.x
-        });
-    }
-
 
 
 }
