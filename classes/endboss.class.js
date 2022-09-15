@@ -5,7 +5,7 @@ class Endboss extends MovableObject {
     y = 60
 
     energy = 50;
-    speed;
+    speed = 1;
 
     offset = {
         top: 50,
@@ -13,7 +13,6 @@ class Endboss extends MovableObject {
         right: 15,
         bottom: 20
     }
-
 
     IMAGES_WALKING = [
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -61,10 +60,10 @@ class Endboss extends MovableObject {
                 this.playDead();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                this.speed += 0.5;
             }
-            else if (world && this.calculatedistance() < 850) {
+            else if (world && this.calculatedistance() < 700) {
                 if (!this.isHittet) {
-                    this.speed = 1, 5;
                     this.playAnimation(this.IMAGES_WALKING);
                     setStobbableInterval(() => {
                         this.moveLeft();

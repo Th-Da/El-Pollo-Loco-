@@ -3,7 +3,6 @@ class ThrowableObject extends MovableObject {
     width = 120;
     height = 100;
 
-
     IMAGES_TRHOWABLE = [
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -20,7 +19,6 @@ class ThrowableObject extends MovableObject {
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
     ];
 
-
     constructor(x, y) {
         super().loadImage(this.IMAGES_TRHOWABLE[0]);
         this.loadImages(this.IMAGES_TRHOWABLE);
@@ -30,7 +28,6 @@ class ThrowableObject extends MovableObject {
         this.setDirection();
         this.throw(x, y);
     }
-
 
     throw() {
         setStobbableInterval(() => {

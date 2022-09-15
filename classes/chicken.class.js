@@ -6,7 +6,7 @@ class Chicken extends MovableObject {
 
     energy = 1;
     isHittet = false;
-    isAtMapStart = false;
+    otherDirection = Math.random() < 0.5;;
 
     offset = {
         top: 0,
@@ -22,7 +22,7 @@ class Chicken extends MovableObject {
     ];
 
     IMAGES_DEAD = [
-        'img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+        'img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
     constructor() {
@@ -34,15 +34,10 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
-
     animate() {
         setStobbableInterval(() => {
-            if (this.otherDirection) {
-                this.otherDirection = false
-            } else if (!this.otherDirection) {
-                this.otherDirection = true;
-            }
-        }, 20000);
+            this.setDirection();
+        }, 15000);
 
         setStobbableInterval(() => {
             if (this.otherDirection) {
@@ -62,5 +57,11 @@ class Chicken extends MovableObject {
         }, 200);
     }
 
-
+    setDirection() {
+        if (this.otherDirection) {
+            this.otherDirection = false
+        } else if (!this.otherDirection) {
+            this.otherDirection = true;
+        }
+    }
 }

@@ -82,14 +82,11 @@ class Character extends MovableObject {
         'img_pollo_locco/img/2_character_pepe/4_hurt/H-43.png'
     ];
 
-
     world;
     walking_sound = new Audio('audio/walking.mp3');
     hurt_sound = new Audio('audio/hurt.mp3');
     jumping_sound = new Audio('audio/jumping.mp3');
     isHittet = false;
-
-
 
     constructor() {
         super().loadImage('img_pollo_locco/img/2_character_pepe/1_idle/idle/I-1.png');
@@ -101,7 +98,6 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
     }
-
 
     animate() {
         setStobbableInterval(() => this.moveCharacter(), 1000 / 60);

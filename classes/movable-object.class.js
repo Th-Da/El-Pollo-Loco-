@@ -1,6 +1,5 @@
 class MovableObject extends DrawableObject {
 
-
     speed = 1;
     otherDirection = false;
     speedY = 0;
@@ -46,7 +45,6 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
-            this.isHittet = true;
         }
     }
 

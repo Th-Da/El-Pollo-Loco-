@@ -1,4 +1,5 @@
 class level {
+
     enemies;
     clouds;
     backgroundObjects;

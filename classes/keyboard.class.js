@@ -1,4 +1,5 @@
 class Keyboard {
+
     LEFT = false;
     RIGHT = false;
     SPACE = false;
@@ -23,7 +24,6 @@ class Keyboard {
             } if (e.keyCode == 38) {
                 Keyboard.UP = true;
             }
-
         });
 
         window.addEventListener("keyup", (e) => {
@@ -38,7 +38,6 @@ class Keyboard {
             } if (e.keyCode == 38) {
                 Keyboard.UP = false;
             }
-
         });
     }
 
@@ -78,8 +77,4 @@ class Keyboard {
             Keyboard.SPACE = false;
         }, { passive: false });
     }
-
-
-
-
 } 

@@ -34,8 +34,7 @@ class World {
             this.createThrowableObjects();
             this.checkCollectableObjects();
             this.checkIfEnemyIsHit();
-/*             this.getEnemiesX();
- */            this.playBackgroundMusic();
+            this.playBackgroundMusic();
         }, 200);
     }
 
@@ -54,7 +53,6 @@ class World {
             }
             this.character.bottle -= 20;
             this.StatusBarBottles.setPercentage(this.character.bottle);
-
         }
     }
 
@@ -62,10 +60,12 @@ class World {
         this.level.enemies.forEach((object, index) => {
             if (this.normalChickenIsHittedFromTop(object)) {
                 this.hitEnemy(object, index);
-                object.isHittet = true;
+                this.isHittet = true;
             }
             this.throwableObjects.forEach(bottle => {
-                this.bottleHitsEnemy(object, index, bottle);
+                if (this.bottleHitsEnemy(object, index, bottle)) {
+                    this.isHittet = true;
+                }
             });
         });
     }
@@ -103,12 +103,6 @@ class World {
             let endboss = this.level.enemies[this.level.enemies.length - 1];
             return endboss.x;
         }
-    }
-
-    getEnemiesX() {
-        this.level.enemies.forEach(enemy => {
-            this.enemyPositionX = enemy.x;
-        });
     }
 
     checkCollectableObjects() {
@@ -186,16 +180,14 @@ class World {
     }
 
     normalChickenIsHittedFromTop(object) {
-        return object.y + object.height > this.character.y - this.character.height &&
-            !(object instanceof Endboss) &&
+        return !(object instanceof Endboss) &&
             !(object instanceof SmallChicken) &&
             this.character.isColliding(object) &&
-            this.character.isAboveGround() &&
             this.character.speedY < 0
     }
 
     enemyHitsCharacter(enemy) {
-        return this.character.isColliding(enemy) && (enemy instanceof SmallChicken || enemy instanceof Endboss)
+        return this.character.isColliding(enemy) && !enemy.isHittet && (enemy instanceof SmallChicken || enemy instanceof Endboss)
     }
 
     normalChickenHitsCharacter(enemy) {
