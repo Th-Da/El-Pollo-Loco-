@@ -27,11 +27,11 @@ function getCollectables() {
 
 function getEnemies() {
     return [
-        /*         new Chicken(),
-                new Chicken(),
-                new Chicken(),
-                new Chicken(),
-                new Chicken(), */
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
         new SmallChicken(),
         new SmallChicken(),
         new SmallChicken(),
