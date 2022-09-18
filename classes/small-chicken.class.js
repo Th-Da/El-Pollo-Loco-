@@ -23,6 +23,7 @@ class SmallChicken extends MovableObject {
     constructor() {
         super().loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 300 + Math.random() * 1900;
         this.speed = 0.15 + Math.random() * 0.5;
         this.applyGravity();
@@ -56,7 +57,7 @@ class SmallChicken extends MovableObject {
         }, 200);
 
         setStobbableInterval(() => {
-            if (!this.isAboveGround()) {
+            if (!this.isAboveGround() && !this.isDead()) {
                 this.jump()
             }
         }, 1000)

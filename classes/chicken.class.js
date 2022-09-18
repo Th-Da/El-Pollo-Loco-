@@ -22,7 +22,7 @@ class Chicken extends MovableObject {
     ];
 
     IMAGES_DEAD = [
-        'img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png'
+        'img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
     constructor() {

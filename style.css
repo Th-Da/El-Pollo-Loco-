@@ -121,11 +121,17 @@ canvas {
     left: 0;
 }
 
-
 .full-screen {
     position: absolute;
-    right: 5%;
-    bottom: 5%;
+    right: 0%;
+    top: 1%;
+    cursor: pointer;
+}
+
+.mute-button {
+    position: absolute;
+    right: 10%;
+    top: 1%;
     cursor: pointer;
 }
 

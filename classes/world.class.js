@@ -60,11 +60,11 @@ class World {
         this.level.enemies.forEach((object, index) => {
             if (this.normalChickenIsHittedFromTop(object)) {
                 this.hitEnemy(object, index);
-                this.isHittet = true;
+                object.isHittet = true;
             }
             this.throwableObjects.forEach(bottle => {
                 if (this.bottleHitsEnemy(object, index, bottle)) {
-                    this.isHittet = true;
+                    object.isHittet = true;
                 }
             });
         });
@@ -194,4 +194,3 @@ class World {
         return this.character.isColliding(enemy) && !this.character.isAboveGround()
     }
 }
-

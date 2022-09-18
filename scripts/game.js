@@ -20,7 +20,7 @@ function removeStartEndElements() {
     document.getElementById('endScreen').classList.add('d-none');
     document.getElementById('btnsBottom').style.display = 'flex';
     document.getElementById('fullScreen').classList.remove('d-none');
-    
+
 }
 
 function gameOverScreen() {
@@ -46,6 +46,10 @@ function restartGame() {
 function toggleFullScreen() {
     document.getElementById('canvas').requestFullscreen();
 }
+
+/* function toggleMute() {
+    Audio.
+} */
 
 function exitFullscreen() {
     if (document.fullscreenElement) {
