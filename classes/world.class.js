@@ -60,11 +60,11 @@ class World {
     }
 
     checkIfEnemyIsHit() {
-        this.level.enemies.forEach((object) => {
-            if (this.normalChickenIsHittedFromTop(object)) {
-                this.hitEnemy(object);
-            }
-        });
+        /*         this.level.enemies.forEach((object) => {
+                    if (this.normalChickenIsHittedFromTop(object)) {
+                        this.hitEnemy(object);
+                    }
+                }); */
         this.level.enemies.forEach((object) => {
             this.throwableObjects.forEach(bottle => {
                 if (bottle.isColliding(object) &&
@@ -76,12 +76,15 @@ class World {
     }
 
     hitEnemy(enemy) {
-        enemy.hit();
-        if (!(enemy instanceof Endboss))
+        if (!(enemy instanceof Endboss)) {
+            enemy.kill();
             setTimeout(() => {
                 let deleteEnemy = this.level.enemies.indexOf(enemy);
                 this.level.enemies.splice(deleteEnemy, 1);
             }, 1000);
+        } else {
+            enemy.hit();
+        }
     }
 
     bottleHitsEnemy(object, index, bottle) {
@@ -93,7 +96,21 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
-            if (this.enemyHitsCharacter(enemy)) {
+            if (
+                this.character.isColliding(enemy) &&
+                !this.character.isHurt() &&
+                !enemy.isHurt() &&
+                !enemy.isDead()
+            ) {
+                if (this.normalChickenIsHittedFromTop(enemy)) {
+                    this.hitEnemy(enemy);
+                } else {
+                    this.character.hit();
+                }
+            }
+
+
+/*             if (this.enemyHitsCharacter(enemy)) {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
@@ -101,7 +118,7 @@ class World {
                 this.character.hit();
                 this.StatusBarHealth.setPercentage(this.character.energy);
             }
-        });
+ */        });
     }
 
     getEnbossX() {
@@ -197,11 +214,11 @@ class World {
 
     enemyHitsCharacter(enemy) {
         return this.character.isColliding(enemy) &&
-            !(enemy.isDead()) &&
+            !(enemy.isHurt()) &&
             (enemy instanceof SmallChicken || enemy instanceof Endboss)
     }
 
     normalChickenHitsCharacter(enemy) {
-        return this.character.isColliding(enemy) && !(enemy.isDead())
+        return this.character.isColliding(enemy) && !(enemy.isHurt())
     }
 }
