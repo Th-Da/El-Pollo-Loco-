@@ -132,7 +132,7 @@ class Character extends MovableObject {
     }
 
     canMoveRight() {
-        return this.world.keyboard.RIGHT && this.x < (this.getEndbossPositionX() - 100)
+        return this.world.keyboard.RIGHT
     }
 
     moveRight() {
@@ -164,7 +164,7 @@ class Character extends MovableObject {
     }
 
     characterIsDead() {
-        return this.isDead() || this.x - 100 > this.getEndbossPositionX()
+        return this.isDead()/*  || this.x - 100 > this.getEndbossPositionX() */
     }
 
     playHurt() {

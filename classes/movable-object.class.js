@@ -78,8 +78,10 @@ class MovableObject extends DrawableObject {
     }
     getEndbossPositionX() {
         for (let index = 0; index < level1.enemies.length; index++) {
-            let endboss = level1.enemies[level1.enemies.length - 1];
-            return endboss.x;
+            let endboss = level1.enemies[index];
+            if (endboss instanceof Endboss) {
+                return endboss.x;
+            }
         }
     }
 }

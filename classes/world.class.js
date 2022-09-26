@@ -57,31 +57,35 @@ class World {
     }
 
     checkIfEnemyIsHit() {
-        this.level.enemies.forEach((object, index) => {
+        this.level.enemies.forEach((object) => {
             if (this.normalChickenIsHittedFromTop(object)) {
-                this.hitEnemy(object, index);
+                this.hitEnemy(object);
                 object.isHittet = true;
             }
+        });
+        this.level.enemies.forEach((object) => {
             this.throwableObjects.forEach(bottle => {
-                if (this.bottleHitsEnemy(object, index, bottle)) {
+                if (bottle.isColliding(object) &&
+                    !object.isHittet) {
+                    this.hitEnemy(object);
                     object.isHittet = true;
                 }
             });
         });
     }
 
-    hitEnemy(enemy, index) {
+    hitEnemy(enemy) {
         enemy.hit();
-        if (!(enemy instanceof Endboss)) {
-            setTimeout(() => {
-                this.level.enemies.splice(index, 1);
-            }, 1000);
-        }
+        setTimeout(() => {
+            let deleteEnemy = this.level.enemies.indexOf(enemy);
+            this.level.enemies.splice(deleteEnemy, 1);
+        }, 1000);
     }
 
     bottleHitsEnemy(object, index, bottle) {
-        if (bottle.isColliding(object)) {
-            this.hitEnemy(object, index, bottle);
+        if (bottle.isColliding(object) &&
+            !object.isHittet) {
+            return true
         }
     }
 
@@ -183,7 +187,8 @@ class World {
         return !(object instanceof Endboss) &&
             !(object instanceof SmallChicken) &&
             this.character.isColliding(object) &&
-            this.character.speedY < 0
+            this.character.speedY < 0 &&
+            !object.isHittet
     }
 
     enemyHitsCharacter(enemy) {
