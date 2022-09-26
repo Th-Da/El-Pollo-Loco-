@@ -39,9 +39,13 @@ class World {
     }
 
     playBackgroundMusic() {
-        this.backgroundMusic.volume = 0.02;
-        this.backgroundMusic.play();
-        this.backgroundMusic.loop = true;
+        if (gameSounds) {
+            this.backgroundMusic.volume = 0.02;
+            this.backgroundMusic.play();
+            this.backgroundMusic.loop = true;
+        } else {
+            this.backgroundMusic.pause();
+        }
     }
 
     createThrowableObjects() {

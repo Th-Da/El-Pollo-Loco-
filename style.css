@@ -13,7 +13,6 @@ body {
     justify-content: center;
     overflow: hidden;
     font-family: 'Rubik Dirt';
-
 }
 
 .d-none {
@@ -123,12 +122,12 @@ canvas {
 
 .full-screen {
     position: absolute;
-    right: 0%;
+    right: 1%;
     top: 1%;
     cursor: pointer;
 }
 
-.mute-button {
+.volume-button {
     position: absolute;
     right: 10%;
     top: 1%;
@@ -186,9 +185,6 @@ canvas {
     }
 
 }
-
-
-
 
 @media only screen and (max-height: 420px) {
 

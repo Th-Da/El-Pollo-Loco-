@@ -35,22 +35,17 @@
 </head>
 
 <body onload="init()">
-
-    <!--     <h1>El pollo loco</h1>
- -->
     <div id="container" class="container">
         <canvas id="canvas" class="d-none" width="720" height="480">
         </canvas>
         <img id="startScreen" class="start-screen"
             src="img_pollo_locco/img/9_intro_outro_screens/start/startscreen_2.png" alt="">
-
         <img class="full-screen d-none" id="fullScreen" src="img_pollo_locco/img/5_background/fullscreen.png" alt=""
             onclick="toggleFullScreen()">
-
-        <img class="mute-button" id="muteButton" src="img_pollo_locco/img/5_background/fullscreen.png" alt=""
-            onclick="toggleMute()">
-
-
+        <img class="volume-button" id="volumeOn" src="img_pollo_locco/img/5_background/volume_on.png" alt=""
+            onclick="mutePlayAudio()">
+        <img class="volume-button d-none" id="muteButton" src="img_pollo_locco/img/5_background/mute.png" alt=""
+            onclick="mutePlayAudio()">
         <div id="btnsBottom" class="btns-bottom">
             <div>
                 <img class="btn-left" id="btnLeft" src="img_pollo_locco/img/5_background/left.png" alt="">
@@ -61,10 +56,8 @@
                 <img class="btn-throw" id="btnThrow" src="img_pollo_locco/img/5_background/throw.png" alt="">
             </div>
         </div>
-
         <div id="how2play" class="how2play">
             <h3>How To Play:</h3>
-
             <div>
                 <img class="btn-descr" src="img_pollo_locco/img/5_background/left.png" alt="">
                 walk left
@@ -90,15 +83,8 @@
                 <span>Kill the Enboss by throwing multiple bottles at it</span>
             </div>
         </div>
-
-
         <button id="startButton" class="start-game  position-start-button" onclick="startGame()">Start Game</button>
-
-
-
     </div>
-
-
     <div id="winScreen" class=" win-screen d-none">
         <button class="start-game position-restart-button" onclick="restartGame()">You Won!<br>Restart Game</button>
     </div>
@@ -106,12 +92,6 @@
     <div id="endScreen" class="end-screen d-none">
         <button class="start-game position-restart-button" onclick="restartGame()">Restart Game</button>
     </div>
-
-
-
-
-
-
 </body>
 
 </html>

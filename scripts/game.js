@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard;
+let gameSounds = true;
 
 function init() {
     keyboard = new Keyboard;
@@ -20,7 +21,6 @@ function removeStartEndElements() {
     document.getElementById('endScreen').classList.add('d-none');
     document.getElementById('btnsBottom').style.display = 'flex';
     document.getElementById('fullScreen').classList.remove('d-none');
-
 }
 
 function gameOverScreen() {
@@ -47,9 +47,21 @@ function toggleFullScreen() {
     document.getElementById('canvas').requestFullscreen();
 }
 
-/* function toggleMute() {
-    Audio.
-} */
+function mutePlayAudio() {
+    let muteAudio = document.getElementById('muteButton');
+    let playAudio = document.getElementById('volumeOn');
+    if (gameSounds == true) {
+        gameSounds = false;
+        muteAudio.classList.remove('d-none');
+        playAudio.classList.add('d-none');
+    }
+    else {
+        gameSounds = true;
+        muteAudio.classList.add('d-none');
+        playAudio.classList.remove('d-none');
+
+    }
+}
 
 function exitFullscreen() {
     if (document.fullscreenElement) {
