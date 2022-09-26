@@ -8,7 +8,7 @@ class Bottle1 extends DrawableObject {
     offset = {
         top: 5,
         left: 35,
-        right: 50,
+        right: 15,
         bottom: 5
     }
 

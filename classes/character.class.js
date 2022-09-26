@@ -14,9 +14,9 @@ class Character extends MovableObject {
 
     offset = {
         top: 90,
-        bottom: 100,
+        bottom: 10,
         left: 15,
-        right: 40
+        right: 30
     }
 
     IMAGES_IDLE = [
