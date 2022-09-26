@@ -11,7 +11,7 @@ class World {
     StatusBarCoins = new StatusBarCoins();
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
-    enemyPositionX;
+    timeSinceLastBottle = 2;
 
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
@@ -34,7 +34,7 @@ class World {
             this.checkCollectableObjects();
             this.checkIfEnemyIsHit();
             this.playBackgroundMusic();
-        }, 200);
+        }, 25);
     }
 
     playBackgroundMusic() {
@@ -48,10 +48,12 @@ class World {
     }
 
     createThrowableObjects() {
-        if (this.keyboard.SPACE && this.character.bottle > 0) {
+        if (this.keyboard.SPACE && this.character.bottle > 0 && this.character.getTimeSinceLastBottle()) {
             if (this.character.otherDirection) {
+                this.character.setTimeSinceLastBottle();
                 this.creatBottleLeft();
             } else if (!this.character.otherDirection) {
+                this.character.setTimeSinceLastBottle();
                 this.creatBottleRight();
             }
             this.character.bottle -= 20;
@@ -127,14 +129,10 @@ class World {
         this.level.objects.forEach((object, index) => {
             if (this.character.isColliding(object)) {
                 if (object instanceof Bottle && this.character.bottle < 100) {
-                    this.character.collectBottle();
-                    this.StatusBarBottles.setPercentage(this.character.bottle);
-                    this.level.objects.splice(index, 1);
+                    this.collectBottle(index);
                 }
-                if (object instanceof Coin && this.character.coin < 100) {
-                    this.character.collectCoin();
-                    this.StatusBarCoins.setPercentage(this.character.coin);
-                    this.level.objects.splice(index, 1);
+                if (object instanceof Coin && this.character.coin < 80) {
+                    this.collectCoin(index);
                 }
             }
         });
@@ -196,7 +194,7 @@ class World {
         this.throwableObjects.push(new ThrowableObject(this.character.x - 100, this.character.y + 100));
     }
 
-    creatBottleRight() {
+    creatBottleRight(timeLatThrow) {
         this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
     }
 
@@ -217,5 +215,17 @@ class World {
 
     normalChickenHitsCharacter(enemy) {
         return this.character.isColliding(enemy) && !(enemy.isHurt())
+    }
+
+    collectCoin(index) {
+        this.character.collectCoin();
+        this.StatusBarCoins.setPercentage(this.character.coin);
+        this.level.objects.splice(index, 1);
+    }
+
+    collectBottle(index) {
+        this.character.collectBottle();
+        this.StatusBarBottles.setPercentage(this.character.bottle);
+        this.level.objects.splice(index, 1);
     }
 }

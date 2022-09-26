@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2;
     lastHit = 0;
+    bottleTimePassed = 2;
 
     applyGravity() {
         setStobbableInterval(() => {
@@ -54,6 +55,16 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+    }
+
+    setTimeSinceLastBottle() {
+        this.bottleTimePassed = new Date().getTime();
+    }
+
+    getTimeSinceLastBottle() {
+        let lastBottle = new Date().getTime() - this.bottleTimePassed;
+        lastBottle = lastBottle / 1000;
+        return lastBottle > 1.5;
     }
 
     playAnimation(images) {

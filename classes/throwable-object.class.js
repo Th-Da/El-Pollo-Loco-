@@ -51,7 +51,6 @@ class ThrowableObject extends MovableObject {
             world.level.enemies.forEach(enem => {
                 if (enem.isHittet) {
                     this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);
-                    enem.isHittet = false;
                 }
             });
         }, 120);
