@@ -49,11 +49,10 @@ class World {
 
     createThrowableObjects() {
         if (this.keyboard.SPACE && this.character.bottle > 0 && this.character.getTimeSinceLastBottle()) {
+            this.character.setTimeSinceLastBottle();
             if (this.character.otherDirection) {
-                this.character.setTimeSinceLastBottle();
                 this.creatBottleLeft();
             } else if (!this.character.otherDirection) {
-                this.character.setTimeSinceLastBottle();
                 this.creatBottleRight();
             }
             this.character.bottle -= 20;
@@ -62,11 +61,6 @@ class World {
     }
 
     checkIfEnemyIsHit() {
-        /*         this.level.enemies.forEach((object) => {
-                    if (this.normalChickenIsHittedFromTop(object)) {
-                        this.hitEnemy(object);
-                    }
-                }); */
         this.level.enemies.forEach((object) => {
             this.throwableObjects.forEach(bottle => {
                 if (bottle.isColliding(object) &&
@@ -76,7 +70,6 @@ class World {
             });
         });
     }
-
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
@@ -93,17 +86,7 @@ class World {
                     this.StatusBarHealth.setPercentage(this.character.energy);
                 }
             }
-
-
-/*             if (this.enemyHitsCharacter(enemy)) {
-                this.character.hit();
-                this.StatusBarHealth.setPercentage(this.character.energy);
-            }
-            if (this.normalChickenHitsCharacter(enemy)) {
-                this.character.hit();
-                this.StatusBarHealth.setPercentage(this.character.energy);
-            }
- */        });
+        });
     }
 
     hitEnemy(enemy) {
@@ -117,13 +100,6 @@ class World {
             enemy.hit();
         }
     }
-
-    /*     bottleHitsEnemy(object, index, bottle) {
-            if (bottle.isColliding(object) &&
-                !object.isDead()) {
-                return true
-            }
-        } */
 
     checkCollectableObjects() {
         this.level.objects.forEach((object, index) => {
@@ -147,7 +123,9 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.objects);
         this.addToMap(this.character);
+
         this.ctx.translate(-this.camera_x, 0);
+
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarBottles);
         this.addToMap(this.StatusBarCoins);

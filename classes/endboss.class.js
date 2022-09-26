@@ -4,7 +4,7 @@ class Endboss extends MovableObject {
     height = 400;
     y = 60
 
-    energy = 50;
+    energy = 500;
     speed = 1;
 
     offset = {
