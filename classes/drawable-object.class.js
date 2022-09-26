@@ -36,7 +36,7 @@ class DrawableObject {
             this instanceof SmallChicken ||
             this instanceof Endboss ||
             this instanceof Coin ||
-            this instanceof Bottle1
+            this instanceof Bottle
         ) {
             ctx.beginPath();
             ctx.lineWidth = '5'
@@ -53,8 +53,7 @@ class DrawableObject {
             this instanceof SmallChicken ||
             this instanceof Endboss ||
             this instanceof Coin ||
-            this instanceof Bottle1 ||
-            this instanceof Bottle2
+            this instanceof Bottle
         ) {
             ctx.beginPath();
             ctx.lineWidth = '5'

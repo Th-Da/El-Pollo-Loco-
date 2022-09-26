@@ -164,7 +164,7 @@ class Character extends MovableObject {
     }
 
     characterIsDead() {
-        return this.isDead()/*  || this.x - 100 > this.getEndbossPositionX() */
+        return this.isDead() || this.x - 100 > this.getEndbossPositionX();
     }
 
     playHurt() {

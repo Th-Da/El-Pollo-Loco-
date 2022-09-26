@@ -16,19 +16,19 @@ function getCollectables() {
         new Coin(),
         new Coin(),
         new Coin(),
-        new Bottle2(),
-        new Bottle1(),
-        new Bottle2(),
-        new Bottle1(),
-        new Bottle2(),
-        new Bottle1(),
-        new Bottle2(),
-        new Bottle1(),
-        new Bottle2(),
-        new Bottle1(),
-        new Bottle2(),
-        new Bottle1(),
-        new Bottle2()
+
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle()
     ]
 }
 

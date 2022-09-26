@@ -75,24 +75,6 @@ class World {
         });
     }
 
-    hitEnemy(enemy) {
-        if (!(enemy instanceof Endboss)) {
-            enemy.kill();
-            setTimeout(() => {
-                let deleteEnemy = this.level.enemies.indexOf(enemy);
-                this.level.enemies.splice(deleteEnemy, 1);
-            }, 1000);
-        } else {
-            enemy.hit();
-        }
-    }
-
-    bottleHitsEnemy(object, index, bottle) {
-        if (bottle.isColliding(object) &&
-            !object.isDead()) {
-            return true
-        }
-    }
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
@@ -106,6 +88,7 @@ class World {
                     this.hitEnemy(enemy);
                 } else {
                     this.character.hit();
+                    this.StatusBarHealth.setPercentage(this.character.energy);
                 }
             }
 
@@ -121,24 +104,37 @@ class World {
  */        });
     }
 
-    getEnbossX() {
-        for (let index = 0; index < this.level.enemies.length; index++) {
-            let endboss = this.level.enemies[this.level.enemies.length - 1];
-            return endboss.x;
+    hitEnemy(enemy) {
+        if (!(enemy instanceof Endboss)) {
+            enemy.kill();
+            setTimeout(() => {
+                let deleteEnemy = this.level.enemies.indexOf(enemy);
+                this.level.enemies.splice(deleteEnemy, 1);
+            }, 1000);
+        } else {
+            enemy.hit();
         }
     }
+
+    /*     bottleHitsEnemy(object, index, bottle) {
+            if (bottle.isColliding(object) &&
+                !object.isDead()) {
+                return true
+            }
+        } */
 
     checkCollectableObjects() {
         this.level.objects.forEach((object, index) => {
             if (this.character.isColliding(object)) {
-                this.level.objects.splice(index, 1);
-                if (object instanceof Bottle1 || object instanceof Bottle2) {
+                if (object instanceof Bottle && this.character.bottle < 100) {
                     this.character.collectBottle();
                     this.StatusBarBottles.setPercentage(this.character.bottle);
+                    this.level.objects.splice(index, 1);
                 }
-                if (object instanceof Coin) {
+                if (object instanceof Coin && this.character.coin < 100) {
                     this.character.collectCoin();
                     this.StatusBarCoins.setPercentage(this.character.coin);
+                    this.level.objects.splice(index, 1);
                 }
             }
         });
@@ -209,6 +205,7 @@ class World {
             !(object instanceof SmallChicken) &&
             this.character.isColliding(object) &&
             this.character.speedY < 0 &&
+            this.character.isAboveGround() &&
             !(object.isDead())
     }
 
