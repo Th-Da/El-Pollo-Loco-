@@ -11,7 +11,6 @@ class World {
     StatusBarCoins = new StatusBarCoins();
     throwableObjects = [];
     backgroundMusic = new Audio('audio/background-music.mp3');
-    isHittet = false;
     enemyPositionX;
 
     constructor(canvas) {
@@ -64,15 +63,13 @@ class World {
         this.level.enemies.forEach((object) => {
             if (this.normalChickenIsHittedFromTop(object)) {
                 this.hitEnemy(object);
-                object.isHittet = true;
             }
         });
         this.level.enemies.forEach((object) => {
             this.throwableObjects.forEach(bottle => {
                 if (bottle.isColliding(object) &&
-                    !object.isHittet) {
+                    !object.isDead()) {
                     this.hitEnemy(object);
-                    object.isHittet = true;
                 }
             });
         });
@@ -80,15 +77,16 @@ class World {
 
     hitEnemy(enemy) {
         enemy.hit();
-        setTimeout(() => {
-            let deleteEnemy = this.level.enemies.indexOf(enemy);
-            this.level.enemies.splice(deleteEnemy, 1);
-        }, 1000);
+        if (!(enemy instanceof Endboss))
+            setTimeout(() => {
+                let deleteEnemy = this.level.enemies.indexOf(enemy);
+                this.level.enemies.splice(deleteEnemy, 1);
+            }, 1000);
     }
 
     bottleHitsEnemy(object, index, bottle) {
         if (bottle.isColliding(object) &&
-            !object.isHittet) {
+            !object.isDead()) {
             return true
         }
     }
@@ -162,6 +160,8 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
+        mo.drawFrame2(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -192,14 +192,16 @@ class World {
             !(object instanceof SmallChicken) &&
             this.character.isColliding(object) &&
             this.character.speedY < 0 &&
-            !object.isHittet
+            !(object.isDead())
     }
 
     enemyHitsCharacter(enemy) {
-        return this.character.isColliding(enemy) && !enemy.isHittet && (enemy instanceof SmallChicken || enemy instanceof Endboss)
+        return this.character.isColliding(enemy) &&
+            !(enemy.isDead()) &&
+            (enemy instanceof SmallChicken || enemy instanceof Endboss)
     }
 
     normalChickenHitsCharacter(enemy) {
-        return this.character.isColliding(enemy) && !this.character.isAboveGround()
+        return this.character.isColliding(enemy) && !(enemy.isDead())
     }
 }

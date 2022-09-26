@@ -3,6 +3,13 @@ class ThrowableObject extends MovableObject {
     width = 120;
     height = 100;
 
+    offset = {
+        top: 5,
+        left: 25,
+        right: 25,
+        bottom: 5
+    }
+
     IMAGES_TRHOWABLE = [
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',

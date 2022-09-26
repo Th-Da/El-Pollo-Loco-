@@ -8,7 +8,14 @@ class SmallChicken extends MovableObject {
     isHittet = false;
     ground = 375;
     speed = 10
-    otherDirection = Math.random() < 0.5;;
+    otherDirection = Math.random() < 0.5;
+
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    }
 
     IMAGES_WALKING = [
         'img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',

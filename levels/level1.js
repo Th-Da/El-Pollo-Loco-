@@ -8,35 +8,42 @@ const level1 = new level(
 function getCollectables() {
     return [
         new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
+        /*         new Coin(),
+                new Coin(),
+                new Coin(),
+                new Coin(),
+                new Coin(),
+                new Coin(),
+                new Coin(),
+                new Coin(), */
+        /*         new Bottle2(),
+                new Bottle1(),
+                new Bottle2(),
+                new Bottle1(),
+                new Bottle2(),
+                new Bottle1(),
+                new Bottle2(),
+                new Bottle1(),
+                new Bottle2(),
+                new Bottle1(),
+                new Bottle2(), */
         new Bottle1(),
-        new Bottle1(),
-        new Bottle1(),
-        new Bottle2(),
-        new Bottle2(),
         new Bottle2()
     ]
 }
 
 function getEnemies() {
     return [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new SmallChicken(),
-        new SmallChicken(),
-        new SmallChicken(),
-        new SmallChicken(),
-        new Endboss()
+        /*         new Chicken(),
+                new Chicken(),
+                new Chicken(),
+                new Chicken(),
+                new Chicken(),
+                new SmallChicken(),
+                new SmallChicken(),
+                new SmallChicken(),
+                new SmallChicken(),
+                new Endboss() */
     ]
 }
 
