@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    padding-top: 3%;
     display: flex;
     flex-direction: column;
     background-image: url(img_pollo_locco/img/5_background/desert-background.png);
@@ -100,8 +99,7 @@ canvas {
     border-radius: 10px 10px 10px 10px;
     pointer-events: none;
     z-index: 1;
-    height: 480px;
-    width: 720px;
+
 }
 
 .end-screen {
@@ -160,6 +158,14 @@ canvas {
         width: 100%;
     }
 
+    .start-screen {
+        width: 100%;
+    }
+
+    .start-screen *> {
+        width: 100%;
+    }
+
     .start-button {
         position: absolute;
         top: 10vh;
@@ -185,6 +191,14 @@ canvas {
 
 @media only screen and (max-height: 480px) {
     canvas {
+        height: 100vh;
+    }
+
+    .start-screen {
+        height: 100vh;
+    }
+
+    .start-screen *> {
         height: 100vh;
     }
 
