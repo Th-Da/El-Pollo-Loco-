@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <title>El-Pollo-Loco</title>
 
     <link rel="icon" href="./img_pollo_locco/img/5_background/sombrero.png">
@@ -75,23 +75,24 @@
                 throw bottle (space)
             </div>
         </div>
-        <div class="note">
-            <h3>Note:</h3>
-            <div>
-                <span>Kill the normal chickens by jumping on or throwing a bottle at it</span>
-                <span>Kill the baby chickens only with bottles</span>
-                <span>Kill the Enboss by throwing multiple bottles at it</span>
-                <span>Do not get behind the endboss or you will die!</span>
-            </div>
+        <div id="note" class="note">
+
+            <ul>
+                <li>Kill the baby chickens only with bottles</li>
+                <li>Kill the Enboss by throwing multiple bottles at it</li>
+                <li>Do not get behind the endboss or you will die!</li>
+            </ul>
         </div>
-        <button id="startButton" class="start-game  position-start-button" onclick="startGame()">Start Game</button>
+        <button id="startButton" class="start-button" onclick="startGame()">Got it. <br> Lets
+            play!</button>
+
     </div>
     <div id="winScreen" class=" win-screen d-none">
-        <button class="start-game position-restart-button" onclick="restartGame()">You Won!<br>Restart Game</button>
+        <button class="position-restart-button start-button" onclick="restartGame()">You Won!<br>Restart Game</button>
     </div>
 
     <div id="endScreen" class="end-screen d-none">
-        <button class="start-game position-restart-button" onclick="restartGame()">Restart Game</button>
+        <button class="position-restart-button start-button" onclick="restartGame()">Restart Game</button>
     </div>
 </body>
 

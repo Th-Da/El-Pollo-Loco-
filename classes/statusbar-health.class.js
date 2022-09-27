@@ -2,8 +2,10 @@ class StatusBarHealth extends DrawableObject {
 
     width = 200;
     height = 60;
-    x = 0; 
+    x = 0;
     y = 0;
+
+    percentage = 100;
 
     IMAGES = [
         'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
@@ -13,9 +15,6 @@ class StatusBarHealth extends DrawableObject {
         'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png',
         'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png'
     ];
-
-    percentage = 100;
-
 
     constructor() {
         super().loadImage(this.IMAGES[0]);
@@ -30,18 +29,17 @@ class StatusBarHealth extends DrawableObject {
     }
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
+        if (this.percentage == 100)
             return 5;
-        } else if (this.percentage > 80) {
+        else if (this.percentage > 80)
             return 4;
-        } else if (this.percentage > 60) {
+        else if (this.percentage > 60)
             return 3;
-        } else if (this.percentage > 40) {
+        else if (this.percentage > 40)
             return 2;
-        } else if (this.percentage > 20) {
+        else if (this.percentage > 20)
             return 1;
-        } else {
+        else
             return 0;
-        }
     }
 }

@@ -38,35 +38,40 @@ class SmallChicken extends MovableObject {
     }
 
     animate() {
+        setStobbableInterval(() => this.setDirection(), 15000);
         setStobbableInterval(() => {
-            if (this.otherDirection) {
-                this.otherDirection = false
-            } else if (!this.otherDirection) {
-                this.otherDirection = true;
-            }
-        }, 20000);
-
-        setStobbableInterval(() => {
-            if (this.otherDirection) {
+            if (this.otherDirection)
                 this.moveRight();
-            } else {
+            else
                 this.moveLeft();
-            }
         }, 30);
 
         setStobbableInterval(() => {
             if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.speed = 0;
-            } else {
+                this.playDead();
+            } else
                 this.playAnimation(this.IMAGES_WALKING);
-            }
         }, 200);
 
         setStobbableInterval(() => {
-            if (!this.isAboveGround() && !this.isDead()) {
-                this.jump()
-            }
-        }, 1000)
+            if (this.canJump())
+                this.jump();
+        }, 1000);
+    }
+
+    setDirection() {
+        if (this.otherDirection)
+            this.otherDirection = false;
+        else if (!this.otherDirection)
+            this.otherDirection = true;
+    }
+
+    playDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.speed = 0;
+    }
+
+    canJump() {
+        return !this.isAboveGround() && !this.isDead()
     }
 }

@@ -30,6 +30,7 @@ function removeStartEndElements() {
     document.getElementById('endScreen').classList.add('d-none');
     document.getElementById('btnsBottom').style.display = 'flex';
     document.getElementById('fullScreen').classList.remove('d-none');
+    document.getElementById('note').classList.add('d-none');
 }
 
 /**

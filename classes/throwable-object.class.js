@@ -42,19 +42,14 @@ class ThrowableObject extends MovableObject {
     throw() {
         this.applyGravity();
         setStobbableInterval(() => {
-            if (this.otherDirection) {
+            if (this.otherDirection)
                 this.moveLeft();
-            }
-            if (!this.otherDirection) {
+            if (!this.otherDirection)
                 this.moveRight();
-            }
-            if (this.bottleBreak) {
+            if (this.bottleBreak)
                 this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);
-            } else {
+            else
                 this.playAnimation(this.IMAGES_TRHOWABLE)
-            }
-
-
         }, 120);
     }
 
@@ -63,6 +58,5 @@ class ThrowableObject extends MovableObject {
             this.otherDirection = true;
         if (!world.character.otherDirection)
             this.otherDirection = false;
-
     }
 }

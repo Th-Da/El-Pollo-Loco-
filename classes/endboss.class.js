@@ -4,7 +4,7 @@ class Endboss extends MovableObject {
     height = 400;
     y = 60
 
-    energy = 500;
+    energy = 25;
     speed = 1;
 
     offset = {
@@ -56,23 +56,31 @@ class Endboss extends MovableObject {
 
     animate() {
         setStobbableInterval(() => {
-            if (this.isDead()) {
+            if (this.isDead())
                 this.playDead();
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.speed += 0.5;
-            }
-            else if (world && this.calculatedistance() < 700) {
-                if (!this.isHittet) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                    setStobbableInterval(() => {
-                        this.moveLeft();
-                    }, 1000);
-                } else if (this.calculatedistance() > 700) {
-                    this.speed = 0
-                }
+            else if (this.isHurt())
+                this.playHurt();
+            if (this.characterMeetsEndboss()) {
+                this.moveLeft();
             }
         }, 200);
+    }
+
+    playDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+            winScreen();
+            world.backgroundMusic.pause();
+        }, 700)
+    }
+
+    playHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        this.speed += 0.5;
+    }
+
+    characterMeetsEndboss() {
+        return world && this.calculatedistance() < 700 && !this.isHurt()
     }
 
     calculatedistance(distance) {
@@ -80,11 +88,8 @@ class Endboss extends MovableObject {
         return distance;
     }
 
-    playDead() {
-        this.playAnimation(this.IMAGES_DEAD);
-        setTimeout(function () {
-            winScreen();
-            world.backgroundMusic.pause();
-        }, 700)
+    moveLeft() {
+        setStobbableInterval(() => super.moveLeft(), 1000);
+        this.playAnimation(this.IMAGES_WALKING);
     }
 }

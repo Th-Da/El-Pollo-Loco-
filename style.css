@@ -33,8 +33,15 @@ canvas {
     z-index: 1;
 }
 
-.start-game {
+.start-button:hover {
+    background: linear-gradient(to bottom, #fa9a00 5%, #fae457 100%);
+    background-color: #fa9a00;
+}
+
+.start-button {
     position: absolute;
+    top: 75%;
+    left: calc(50% - 100px);
     width: 200px;
     box-shadow: inset 0px 1px 0px 0px #fff6af;
     background: linear-gradient(to bottom, #fae457 5%, #fa9a00 100%);
@@ -45,24 +52,14 @@ canvas {
     cursor: pointer;
     color: #1f1e1f;
     font-size: 20px;
-    padding: 10px 24px;
+    padding: 5px 24px;
     text-decoration: none;
     text-shadow: 0px 2px 1px #ffee66;
 }
 
-.start-game:hover {
-    background: linear-gradient(to bottom, #fa9a00 5%, #fae457 100%);
-    background-color: #fa9a00;
-}
-
-.position-start-button {
-    top: 10vh;
-    left: calc(50% - 100px);
-}
-
 .position-restart-button {
     position: absolute;
-    top: 14vh;
+    top: 18%;
     left: calc(50% - 100px);
 }
 
@@ -77,18 +74,25 @@ canvas {
 }
 
 .note {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    top: 3vh;
+    width: 93%;
+    left: 0;
+    align-content: space-around;
+    flex-wrap: wrap;
+    border-radius: 6px;
+    backdrop-filter: blur(2px);
+    background-color: #ffffff26;
+    border: 1px solid #adaba8;
+    font-size: 20px;
+    padding: 10px 24px;
+    text-decoration: none;
+    text-shadow: 0px 2px 1px #110f0745;
+    cursor: context-menu;
 }
 
 .note h3 {
     margin-right: 3%;
-}
-
-.note>* {
-    display: flex;
-    flex-direction: column;
 }
 
 .start-screen {
@@ -132,6 +136,7 @@ canvas {
     right: 10%;
     top: 1%;
     cursor: pointer;
+    z-index: 99;
 }
 
 .btns-bottom {
@@ -155,13 +160,17 @@ canvas {
         width: 100%;
     }
 
-    .position-restart-button {
+    .start-button {
         position: absolute;
         top: 10vh;
         left: calc(50% - 100px);
     }
 
     .full-screen {
+        display: none;
+    }
+
+    .volume-button {
         display: none;
     }
 
@@ -179,14 +188,25 @@ canvas {
         height: 100vh;
     }
 
-    .position-start-button {
-        top: 10vh;
+    .start-button {
         left: calc(50% - 100px);
+        top: 15%;
     }
 
+    .full-screen {
+        display: none;
+    }
+
+    .volume-button {
+        display: none;
+    }
 }
 
 @media only screen and (max-height: 420px) {
+
+    .note {
+        display: none;
+    }
 
     .position-restart-button {
         top: 50px;
@@ -203,13 +223,14 @@ canvas {
         top: 25px;
     }
 
-    .position-start-button {
-        top: 100px;
+    .start-button {
+        top: 15%;
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .position-start-button {
-        left: calc(58% - 100px);
+    .start-button {
+        left: calc(57% - 100px);
+        top: 15%;
     }
 }

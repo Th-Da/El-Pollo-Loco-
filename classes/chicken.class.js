@@ -35,33 +35,31 @@ class Chicken extends MovableObject {
     }
 
     animate() {
+        setStobbableInterval(() => this.setDirection(), 15000);
         setStobbableInterval(() => {
-            this.setDirection();
-        }, 15000);
-
-        setStobbableInterval(() => {
-            if (this.otherDirection) {
+            if (this.otherDirection)
                 this.moveRight();
-            } else {
+            else
                 this.moveLeft();
-            }
         }, 30)
 
         setStobbableInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.speed = 0;
-            } else {
+            if (this.isDead())
+                this.playDead();
+            else
                 this.playAnimation(this.IMAGES_WALKING);
-            }
         }, 200);
     }
 
     setDirection() {
-        if (this.otherDirection) {
+        if (this.otherDirection)
             this.otherDirection = false
-        } else if (!this.otherDirection) {
+        else if (!this.otherDirection)
             this.otherDirection = true;
-        }
+    }
+
+    playDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.speed = 0;
     }
 }

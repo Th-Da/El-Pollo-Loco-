@@ -29,11 +29,11 @@ class World {
 
     run() {
         setStobbableInterval(() => {
+            this.playBackgroundMusic();
             this.checkCollision();
             this.createThrowableObjects();
-            this.checkCollectableObjects();
             this.checkIfEnemyIsHitByBottle();
-            this.playBackgroundMusic();
+            this.checkCollectableObjects();
         }, 25);
     }
 
@@ -47,8 +47,21 @@ class World {
         }
     }
 
+    checkCollision() {
+        this.level.enemies.forEach(enemy => {
+            if (this.characterAndEnemyCollides(enemy)) {
+                if (this.normalChickenIsHittedFromTop(enemy)) {
+                    this.hitEnemy(enemy);
+                } else {
+                    this.character.hit();
+                    this.StatusBarHealth.setPercentage(this.character.energy);
+                }
+            }
+        });
+    }
+
     createThrowableObjects() {
-        if (this.keyboard.SPACE && this.character.bottle > 0 && this.character.getTimeSinceLastBottle()) {
+        if (this.ableToThrowBottle()) {
             this.character.setTimeSinceLastBottle();
             if (this.character.otherDirection) {
                 this.creatBottleLeft();
@@ -68,19 +81,6 @@ class World {
                     bottle.bottleBreak = true;
                 }
             });
-        });
-    }
-
-    checkCollision() {
-        this.level.enemies.forEach(enemy => {
-            if (this.characterAndEnemyCollides(enemy)) {
-                if (this.normalChickenIsHittedFromTop(enemy)) {
-                    this.hitEnemy(enemy);
-                } else {
-                    this.character.hit();
-                    this.StatusBarHealth.setPercentage(this.character.energy);
-                }
-            }
         });
     }
 
@@ -118,9 +118,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.objects);
         this.addToMap(this.character);
-
         this.ctx.translate(-this.camera_x, 0);
-
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarBottles);
         this.addToMap(this.StatusBarCoins);
@@ -139,7 +137,6 @@ class World {
     }
 
     addToMap(mo) {
-
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
@@ -187,6 +184,12 @@ class World {
 
     normalChickenHitsCharacter(enemy) {
         return this.character.isColliding(enemy) && !(enemy.isHurt())
+    }
+
+    ableToThrowBottle() {
+        return this.keyboard.SPACE &&
+            this.character.bottle > 0 &&
+            this.character.getTimeSinceLastBottle()
     }
 
     bottleHitsEnemy(bottle, enemy) {
