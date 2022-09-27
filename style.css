@@ -154,9 +154,6 @@ canvas {
 
 /* Smartphones */
 @media only screen and (max-width: 720px) {
-    body {
-        height: auto;
-    }
 
     canvas {
         width: 100%;
