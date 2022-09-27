@@ -32,7 +32,7 @@ class World {
             this.checkCollision();
             this.createThrowableObjects();
             this.checkCollectableObjects();
-            this.checkIfEnemyIsHit();
+            this.checkIfEnemyIsHitByBottle();
             this.playBackgroundMusic();
         }, 25);
     }
@@ -60,11 +60,12 @@ class World {
         }
     }
 
-    checkIfEnemyIsHit() {
+    checkIfEnemyIsHitByBottle() {
         this.level.enemies.forEach((enemy) => {
             this.throwableObjects.forEach(bottle => {
                 if (this.bottleHitsEnemy(bottle, enemy)) {
                     this.hitEnemy(enemy);
+                    bottle.bottleBreak = true;
                 }
             });
         });
@@ -190,7 +191,8 @@ class World {
 
     bottleHitsEnemy(bottle, enemy) {
         return bottle.isColliding(enemy) &&
-            !enemy.isDead()
+            !enemy.isDead() &&
+            !bottle.bottleBreak
     }
 
     collectCoin(index) {

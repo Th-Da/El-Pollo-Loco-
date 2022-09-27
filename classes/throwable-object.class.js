@@ -2,6 +2,9 @@ class ThrowableObject extends MovableObject {
 
     width = 120;
     height = 100;
+    bottleBreak = false;
+    speed = 50;
+    speedY = 15;
 
     /*     offset = {
             top: 5,
@@ -33,26 +36,25 @@ class ThrowableObject extends MovableObject {
         this.x = x;
         this.y = y;
         this.setDirection();
-        this.throw(x, y);
+        this.throw();
     }
 
     throw() {
+        this.applyGravity();
         setStobbableInterval(() => {
             if (this.otherDirection) {
-                this.x -= 25
-                this.speed = -6;
+                this.moveLeft();
             }
             if (!this.otherDirection) {
-                this.x += 25;
-                this.speedY = 6;
+                this.moveRight();
             }
-            this.playAnimation(this.IMAGES_TRHOWABLE)
-            this.applyGravity();
-            world.level.enemies.forEach(enem => {
-                if (enem.isHittet) {
-                    this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);
-                }
-            });
+            if (this.bottleBreak) {
+                this.playAnimation(this.IMAGES_TRHOWABLE_SPLASH);
+            } else {
+                this.playAnimation(this.IMAGES_TRHOWABLE)
+            }
+
+
         }, 120);
     }
 
