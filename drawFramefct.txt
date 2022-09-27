@@ -1,6 +1,6 @@
 addToMap(mo) {
         mo.drawFrame(this.ctx);
-        mo.draw2Frame(this.ctx)
+        mo.drawFrame2(this.ctx)
 }
 
 
@@ -11,34 +11,35 @@ addToMap(mo) {
 
 
     drawFrame(ctx) {
-        if (this instanceof Character ||
-            this instanceof SmallChicken ||
+        if (
+            this instanceof Character ||
             this instanceof Chicken ||
-            this instanceof Bottle1 ||
-            this instanceof Bottle2 ||
+            this instanceof SmallChicken ||
+            this instanceof Endboss ||
             this instanceof Coin ||
-            this instanceof ThrowableObject) {
+            this instanceof Bottle
+        ) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
+            ctx.lineWidth = '5'
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(this.x, this.y, this.width, this.height)
             ctx.stroke();
         }
     }
 
-    draw2Frame(ctx) {
-        if (this instanceof Character ||
-            this instanceof Endboss ||
-            this instanceof SmallChicken ||
+    drawFrame2(ctx) {
+        if (
+            this instanceof Character ||
             this instanceof Chicken ||
-            this instanceof Bottle1 ||
-            this instanceof Bottle2 ||
+            this instanceof SmallChicken ||
+            this instanceof Endboss ||
             this instanceof Coin ||
-            this instanceof ThrowableObject) {
+            this instanceof Bottle
+        ) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
+            ctx.lineWidth = '5'
             ctx.strokeStyle = 'red';
-            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top)
             ctx.stroke();
         }
     }

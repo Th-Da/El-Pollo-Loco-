@@ -61,11 +61,10 @@ class World {
     }
 
     checkIfEnemyIsHit() {
-        this.level.enemies.forEach((object) => {
+        this.level.enemies.forEach((enemy) => {
             this.throwableObjects.forEach(bottle => {
-                if (bottle.isColliding(object) &&
-                    !object.isDead()) {
-                    this.hitEnemy(object);
+                if (this.bottleHitsEnemy(bottle, enemy)) {
+                    this.hitEnemy(enemy);
                 }
             });
         });
@@ -73,12 +72,7 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach(enemy => {
-            if (
-                this.character.isColliding(enemy) &&
-                !this.character.isHurt() &&
-                !enemy.isHurt() &&
-                !enemy.isDead()
-            ) {
+            if (this.characterAndEnemyCollides(enemy)) {
                 if (this.normalChickenIsHittedFromTop(enemy)) {
                     this.hitEnemy(enemy);
                 } else {
@@ -149,8 +143,6 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-        mo.drawFrame2(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -172,8 +164,15 @@ class World {
         this.throwableObjects.push(new ThrowableObject(this.character.x - 100, this.character.y + 100));
     }
 
-    creatBottleRight(timeLatThrow) {
+    creatBottleRight() {
         this.throwableObjects.push(new ThrowableObject(this.character.x + 100, this.character.y + 100));
+    }
+
+    characterAndEnemyCollides(enemy) {
+        return this.character.isColliding(enemy) &&
+            !this.character.isHurt() &&
+            !enemy.isHurt() &&
+            !enemy.isDead()
     }
 
     normalChickenIsHittedFromTop(object) {
@@ -185,14 +184,13 @@ class World {
             !(object.isDead())
     }
 
-    enemyHitsCharacter(enemy) {
-        return this.character.isColliding(enemy) &&
-            !(enemy.isHurt()) &&
-            (enemy instanceof SmallChicken || enemy instanceof Endboss)
-    }
-
     normalChickenHitsCharacter(enemy) {
         return this.character.isColliding(enemy) && !(enemy.isHurt())
+    }
+
+    bottleHitsEnemy(bottle, enemy) {
+        return bottle.isColliding(enemy) &&
+            !enemy.isDead()
     }
 
     collectCoin(index) {

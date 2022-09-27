@@ -13,7 +13,7 @@ function getCollectables() {
 }
 
 function getCoins() {
-    [
+    return [
         new Coin(),
         new Coin(),
         new Coin(),
@@ -27,7 +27,7 @@ function getCoins() {
 }
 
 function getBottles() {
-    [
+    return [
         new Bottle(),
         new Bottle(),
         new Bottle(),
