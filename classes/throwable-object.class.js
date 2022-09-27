@@ -6,12 +6,12 @@ class ThrowableObject extends MovableObject {
     speed = 50;
     speedY = 15;
 
-    /*     offset = {
-            top: 5,
-            left: 25,
-            right: 25,
-            bottom: 5
-        } */
+    offset = {
+        top: 5,
+        left: 25,
+        right: 25,
+        bottom: 5
+    }
 
     IMAGES_TRHOWABLE = [
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
