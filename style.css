@@ -154,20 +154,22 @@ canvas {
 
 /* Smartphones */
 @media only screen and (max-width: 720px) {
+    body {
+        height: auto;
+    }
+
     canvas {
         width: 100%;
     }
 
     .start-screen {
         width: 100%;
-    }
-
-    .start-screen *> {
-        width: 100%;
+        height: auto;
     }
 
     .start-button {
         position: absolute;
+        width: fit-content;
         top: 10vh;
         left: calc(50% - 100px);
     }
@@ -204,7 +206,7 @@ canvas {
 
     .start-button {
         left: calc(50% - 100px);
-        top: 15%;
+        top: 12%;
     }
 
     .full-screen {
@@ -212,6 +214,10 @@ canvas {
     }
 
     .volume-button {
+        display: none;
+    }
+
+    .how2play {
         display: none;
     }
 }
@@ -245,6 +251,6 @@ canvas {
 @media only screen and (max-width: 480px) {
     .start-button {
         left: calc(57% - 100px);
-        top: 15%;
+        top: 12%;
     }
 }

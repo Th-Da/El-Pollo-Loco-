@@ -12,11 +12,21 @@ class DrawableObject {
         bottom: 0
     }
 
+    /** 
+     * 
+     * This function loads the first image
+     * @param {string} path image path
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /** 
+ * 
+ * This function loads every image
+ * @param {Array} path image path
+ */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

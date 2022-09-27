@@ -24,11 +24,17 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
+    /**
+     * 
+     * This function checks if two objects are colliding with each other
+     * @param {object} mo object the character is colliding width
+     * @returns boolean if colliding
+     */
     isColliding(mo) {
 
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
 
@@ -67,6 +73,11 @@ class MovableObject extends DrawableObject {
         return lastBottle > 1.5;
     }
 
+    /**
+     * 
+     * This funktion plays animation for a object
+     * @param {Array} images images of objects
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -85,6 +96,7 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
+
     getEndbossPositionX() {
         for (let index = 0; index < level1.enemies.length; index++) {
             let endboss = level1.enemies[index];

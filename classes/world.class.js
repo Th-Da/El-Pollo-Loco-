@@ -91,20 +91,17 @@ class World {
                 let deleteEnemy = this.level.enemies.indexOf(enemy);
                 this.level.enemies.splice(deleteEnemy, 1);
             }, 1000);
-        } else {
+        } else
             enemy.hit();
-        }
     }
 
     checkCollectableObjects() {
         this.level.objects.forEach((object, index) => {
             if (this.character.isColliding(object)) {
-                if (object instanceof Bottle && this.character.bottle < 100) {
+                if (object instanceof Bottle && this.character.bottle < 100)
                     this.collectBottle(index);
-                }
-                if (object instanceof Coin && this.character.coin < 80) {
+                if (object instanceof Coin && this.character.coin < 80)
                     this.collectCoin(index);
-                }
             }
         });
     }
@@ -130,22 +127,35 @@ class World {
         });
     }
 
+    /**
+     * 
+     * This function adds each object of an array to the map
+     * @param {Array} objects objects
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * 
+     * This function adds a single object to the map
+     * @param {object} mo single object
+     */
     addToMap(mo) {
-        if (mo.otherDirection) {
+        if (mo.otherDirection)
             this.flipImage(mo);
-        }
         mo.draw(this.ctx);
-        if (mo.otherDirection) {
+        if (mo.otherDirection)
             this.flipImageBack(mo);
-        }
     }
 
+    /**
+     * 
+     * This function flips the image to the left
+     * @param {object} mo single object
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -153,6 +163,11 @@ class World {
         mo.x = mo.x * -1;
     }
 
+    /**
+     * 
+     * this function flips the image to the right
+     * @param {object} mo single object
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

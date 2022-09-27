@@ -3,9 +3,6 @@ let world;
 let keyboard;
 let gameSounds = true;
 
-/**
- * Initializes keys onload
- */
 function init() {
     keyboard = new Keyboard;
 }
@@ -51,30 +48,19 @@ function winScreen() {
     document.getElementById('winScreen').classList.remove('d-none');
 }
 
-/**
- * Stops the game by clearing all intervals when loosing or winning
- */
 function stopGame() {
     setIntervalIds.forEach(clearInterval);
 }
 
-/**
- * Restarts onklick when the game stoped
- */
 function restartGame() {
     window.location = 'index.html';
 }
 
-/**
- * Play on fullscreen 
- */
 function toggleFullScreen() {
     document.getElementById('canvas').requestFullscreen();
 }
 
-/**
- * Exit the fullscreen mode
- */
+
 function exitFullscreen() {
     if (document.fullscreenElement) {
         document.exitFullscreen();
